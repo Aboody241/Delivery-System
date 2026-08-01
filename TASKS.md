@@ -41,9 +41,9 @@ This file tracks the development progress of the project.
 ## Authentication
 
 - [x] Register
-- [ ] Login
-- [ ] Logout
-- [ ] Current User
+- [x] Login
+- [x] Logout
+- [x] Current User
 
 ---
 
