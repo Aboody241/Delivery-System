@@ -29,6 +29,7 @@ class RestaurantRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'address' => [$isPost ? 'required' : 'sometimes', 'string', 'max:255'],
             'phone' => [$isPost ? 'required' : 'sometimes', 'string', 'max:50'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'image_url' => ['nullable', 'url', 'max:2048'],
             'is_active' => ['sometimes', 'boolean'],
         ];

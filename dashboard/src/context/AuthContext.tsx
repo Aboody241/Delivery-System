@@ -64,7 +64,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Login
   const login = useCallback(async (email: string, password: string) => {
     const response = await api.post('/login', { email, password });
-    const { token: newToken, user: newUser } = response.data.data;
+    const { access_token: newToken, user: newUser } = response.data.data;
 
     // Only allow admin or owner to access the dashboard
     if (!['admin', 'owner'].includes(newUser.role)) {

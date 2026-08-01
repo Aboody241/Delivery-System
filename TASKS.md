@@ -113,7 +113,7 @@ This file tracks the development progress of the project.
 
 - [x] Login
 - [x] Dashboard
-- [ ] Restaurants
+- [x] Restaurants
 - [ ] Categories
 - [ ] Products
 - [ ] Orders

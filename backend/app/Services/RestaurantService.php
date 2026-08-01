@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Restaurant;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantService
 {
@@ -43,6 +44,11 @@ class RestaurantService
      */
     public function create(array $data): Restaurant
     {
+        if (!empty($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
+            $path = $data['image']->store('restaurants', 'public');
+            $data['image_url'] = asset('storage/' . $path);
+        }
+
         return Restaurant::create([
             'name' => $data['name'],
             'description' => $data['description'] ?? null,
@@ -62,6 +68,17 @@ class RestaurantService
      */
     public function update(Restaurant $restaurant, array $data): Restaurant
     {
+        if (!empty($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
+            // Delete old file if existed locally
+            if (!empty($restaurant->image_url)) {
+                $oldPath = str_replace(asset('storage/'), '', $restaurant->image_url);
+                Storage::disk('public')->delete($oldPath);
+            }
+
+            $path = $data['image']->store('restaurants', 'public');
+            $data['image_url'] = asset('storage/' . $path);
+        }
+
         $restaurant->update(array_filter([
             'name' => $data['name'] ?? null,
             'description' => $data['description'] ?? null,
@@ -84,6 +101,11 @@ class RestaurantService
      */
     public function delete(Restaurant $restaurant): ?bool
     {
+        if (!empty($restaurant->image_url)) {
+            $oldPath = str_replace(asset('storage/'), '', $restaurant->image_url);
+            Storage::disk('public')->delete($oldPath);
+        }
+
         return $restaurant->delete();
     }
 }
