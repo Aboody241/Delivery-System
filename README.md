@@ -201,4 +201,4 @@ This project is built for educational purposes and to simulate a professional so
 
 ---
 
-Built with ❤️ using Laravel, React, Flutter, and AI-assisted development.
+by: ENG. Abdullah Essam
