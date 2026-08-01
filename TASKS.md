@@ -49,11 +49,11 @@ This file tracks the development progress of the project.
 
 ## Restaurants
 
-- [ ] Restaurant Model
+- [x] Restaurant Model
 - [x] Migration
-- [ ] CRUD API
-- [ ] Validation
-- [ ] API Resource
+- [x] CRUD API
+- [x] Validation
+- [x] API Resource
 
 ---
 
