@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\CartController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\RestaurantController;
@@ -39,5 +40,12 @@ Route::prefix('v1')->group(function () {
         Route::post('/restaurants/{restaurant}/products', [ProductController::class, 'store']);
         Route::put('/products/{id}', [ProductController::class, 'update']);
         Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+
+        // Cart routes
+        Route::get('/cart', [CartController::class, 'show']);
+        Route::post('/cart/items', [CartController::class, 'addItem']);
+        Route::put('/cart/items/{id}', [CartController::class, 'updateItem']);
+        Route::delete('/cart/items/{id}', [CartController::class, 'removeItem']);
+        Route::delete('/cart', [CartController::class, 'clear']);
     });
 });

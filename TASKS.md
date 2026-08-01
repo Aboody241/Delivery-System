@@ -80,11 +80,11 @@ This file tracks the development progress of the project.
 
 ## Cart
 
-- [ ] Create Cart
-- [ ] Add Item
-- [ ] Remove Item
-- [ ] Update Quantity
-- [ ] Clear Cart
+- [x] Create Cart
+- [x] Add Item
+- [x] Remove Item
+- [x] Update Quantity
+- [x] Clear Cart
 
 ---
 
