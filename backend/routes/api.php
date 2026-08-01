@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CartController;
 use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\RestaurantController;
 use Illuminate\Support\Facades\Route;
@@ -47,5 +48,11 @@ Route::prefix('v1')->group(function () {
         Route::put('/cart/items/{id}', [CartController::class, 'updateItem']);
         Route::delete('/cart/items/{id}', [CartController::class, 'removeItem']);
         Route::delete('/cart', [CartController::class, 'clear']);
+
+        // Order routes
+        Route::get('/orders', [OrderController::class, 'index']);
+        Route::get('/orders/{id}', [OrderController::class, 'show']);
+        Route::post('/orders', [OrderController::class, 'store']);
+        Route::put('/orders/{id}/status', [OrderController::class, 'updateStatus']);
     });
 });

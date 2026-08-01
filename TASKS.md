@@ -90,10 +90,10 @@ This file tracks the development progress of the project.
 
 ## Orders
 
-- [ ] Create Order
-- [ ] Order History
-- [ ] Order Details
-- [ ] Update Status
+- [x] Create Order
+- [x] Order History
+- [x] Order Details
+- [x] Update Status
 
 ---
 
