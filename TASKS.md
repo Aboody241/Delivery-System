@@ -101,18 +101,18 @@ This file tracks the development progress of the project.
 
 ## Setup
 
-- [ ] Configure Project
-- [ ] Routing
-- [ ] Authentication
-- [ ] Axios
-- [ ] React Query
+- [x] Configure Project
+- [x] Routing
+- [x] Authentication
+- [x] Axios
+- [x] React Query
 
 ---
 
 ## Pages
 
-- [ ] Login
-- [ ] Dashboard
+- [x] Login
+- [x] Dashboard
 - [ ] Restaurants
 - [ ] Categories
 - [ ] Products
