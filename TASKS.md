@@ -69,12 +69,12 @@ This file tracks the development progress of the project.
 
 ## Products
 
-- [ ] Product Model
+- [x] Product Model
 - [x] Migration
-- [ ] CRUD API
-- [ ] Image Upload
-- [ ] Search
-- [ ] Pagination
+- [x] CRUD API
+- [x] Image Upload
+- [x] Search
+- [x] Pagination
 
 ---
 

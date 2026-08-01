@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\RestaurantController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,10 @@ Route::prefix('v1')->group(function () {
     // Public category routes
     Route::get('/restaurants/{restaurant}/categories', [CategoryController::class, 'index']);
 
+    // Public product routes
+    Route::get('/restaurants/{restaurant}/products', [ProductController::class, 'index']);
+    Route::get('/products/{id}', [ProductController::class, 'show']);
+
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/me', [AuthController::class, 'me']);
         Route::post('/logout', [AuthController::class, 'logout']);
@@ -29,5 +34,10 @@ Route::prefix('v1')->group(function () {
         Route::post('/restaurants/{restaurant}/categories', [CategoryController::class, 'store']);
         Route::put('/categories/{id}', [CategoryController::class, 'update']);
         Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+
+        // Protected product routes
+        Route::post('/restaurants/{restaurant}/products', [ProductController::class, 'store']);
+        Route::put('/products/{id}', [ProductController::class, 'update']);
+        Route::delete('/products/{id}', [ProductController::class, 'destroy']);
     });
 });
