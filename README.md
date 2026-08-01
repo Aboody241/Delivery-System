@@ -1,4 +1,4 @@
-# 🚚 Delivery System
+# Delivery System
 
 A production-like delivery platform built to simulate a real-world software project using **Laravel**, **React**, and **Flutter**.
 
@@ -6,7 +6,7 @@ This project is designed to understand how modern software systems are built and
 
 ---
 
-# 🎯 Project Goal
+# Project Goal
 
 This project is **not** intended to become a complete production delivery platform.
 
@@ -22,7 +22,7 @@ The focus is on learning the workflow and architecture rather than implementing 
 
 ---
 
-# 🏗️ Tech Stack
+# Tech Stack
 
 ## Backend
 
@@ -65,7 +65,7 @@ delivery-system/
 
 ---
 
-# 📦 Applications
+# Applications
 
 ## Backend (Laravel)
 
@@ -112,7 +112,7 @@ The mobile app communicates only with the Laravel API.
 
 ---
 
-# 🔄 System Architecture
+# System Architecture
 
 ```
              Flutter Mobile
@@ -135,7 +135,7 @@ All business logic lives inside Laravel.
 
 ---
 
-# 📚 Documentation
+# Documentation
 
 | File | Purpose |
 |------|---------|
@@ -145,7 +145,7 @@ All business logic lives inside Laravel.
 
 ---
 
-# 🚀 Development Workflow
+# Development Workflow
 
 The project will be developed in the following order:
 
@@ -158,7 +158,7 @@ The project will be developed in the following order:
 
 ---
 
-# 💡 Development Principles
+# Development Principles
 
 - Keep the code simple.
 - Follow the existing architecture.
@@ -170,7 +170,7 @@ The project will be developed in the following order:
 
 ---
 
-# 🤖 Working with AI
+# Working with AI
 
 Before generating code, every AI agent should:
 
@@ -185,7 +185,7 @@ AI should assist development, not replace engineering decisions.
 
 ---
 
-# 📈 Current Status
+# Current Status
 
 Current Phase:
 
@@ -195,7 +195,7 @@ The next milestone is building the Laravel backend.
 
 ---
 
-# 📄 License
+# License
 
 This project is built for educational purposes and to simulate a professional software development workflow.
 
