@@ -59,11 +59,11 @@ This file tracks the development progress of the project.
 
 ## Categories
 
-- [ ] Category Model
+- [x] Category Model
 - [x] Migration
-- [ ] CRUD API
-- [ ] Validation
-- [ ] Relationships
+- [x] CRUD API
+- [x] Validation
+- [x] Relationships
 
 ---
 
