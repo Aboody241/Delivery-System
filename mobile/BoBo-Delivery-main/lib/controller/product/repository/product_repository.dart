@@ -1,33 +1,40 @@
 import 'package:bobo/features/home/models/products_model.dart';
+import 'package:bobo/core/network/dio_client.dart';
+import 'package:dio/dio.dart';
 
 class ProductRepository {
+  final Dio _dio = DioClient().dio;
+
   ProductRepository();
 
   Future<List<Product>> getProducts() async {
-    // Return a mock list of products for now
-    // In the next step, this will fetch from the Laravel API
-    await Future.delayed(const Duration(milliseconds: 500));
-    return [
-      Product(
-        id: '1',
-        name: 'Zinger Burger',
-        price: 7.99,
-        image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500',
-        rate: 4.8,
-        disc: 'Crispy chicken breast with fresh lettuce and mayo in a warm bun.',
-        calories: '450 kcal',
-        deliveryTime: 25,
-      ),
-      Product(
-        id: '2',
-        name: 'Pizza Margherita',
-        price: 12.99,
-        image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500',
-        rate: 4.6,
-        disc: 'Tomato sauce, fresh mozzarella cheese and organic basil.',
-        calories: '800 kcal',
-        deliveryTime: 30,
-      ),
-    ];
+    try {
+      // 1. Fetch active restaurants
+      final restaurantsResponse = await _dio.get('/restaurants');
+      int restaurantId = 1; // Default fallback ID
+
+      if (restaurantsResponse.data != null && 
+          restaurantsResponse.data['status'] == 'success') {
+        final List restaurants = restaurantsResponse.data['data'] ?? [];
+        if (restaurants.isNotEmpty) {
+          restaurantId = restaurants.first['id'] ?? 1;
+        }
+      }
+
+      // 2. Fetch products of the selected restaurant
+      final response = await _dio.get('/restaurants/$restaurantId/products');
+      final responseData = response.data;
+
+      if (responseData['status'] == 'success') {
+        final List dataList = responseData['data'] ?? [];
+        return dataList.map((json) => Product.fromJson(json)).toList();
+      } else {
+        throw responseData['message'] ?? 'Failed to load products';
+      }
+    } on DioException catch (e) {
+      throw e.response?.data?['message'] ?? e.message ?? 'Connection error';
+    } catch (e) {
+      throw 'An unexpected error occurred: $e';
+    }
   }
 }

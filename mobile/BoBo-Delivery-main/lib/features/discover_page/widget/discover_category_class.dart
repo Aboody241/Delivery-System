@@ -5,7 +5,7 @@ class DiscoverCategoryClass {
 
   factory DiscoverCategoryClass.fromJson(Map<String, dynamic> json) {
     return DiscoverCategoryClass(
-      child: json['chlid'] ?? '',
+      child: json['name'] ?? json['chlid'] ?? '',
     );
   }
 }

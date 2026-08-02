@@ -141,10 +141,10 @@ This file tracks the development progress of the project.
 
 ## Home
 
-- [ ] Restaurants
-- [ ] Categories
-- [ ] Products
-- [ ] Search
+- [x] Restaurants
+- [x] Categories
+- [x] Products
+- [x] Search
 
 ---
 

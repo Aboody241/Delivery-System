@@ -18,14 +18,14 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      name: json['name'],
-      price: json['price'] * 1.0,
-      image: json['image'],
-      rate: json['rate'] * 1.0,
-      disc: json['disc'] ,
-      calories: json['calories'],
-      deliveryTime: json['deliveryTime'], 
-      id: json['document id'] ?? json['id'] ?? '',
+      id: json['id']?.toString() ?? json['document id']?.toString() ?? '',
+      name: json['name'] ?? 'Product',
+      price: double.tryParse(json['price']?.toString() ?? '0.0') ?? 0.0,
+      image: json['image_url'] ?? json['image'] ?? 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500',
+      rate: double.tryParse(json['rate']?.toString() ?? '4.5') ?? 4.5,
+      disc: json['description'] ?? json['disc'] ?? 'No description available.',
+      calories: json['calories'] ?? '350 kcal',
+      deliveryTime: json['deliveryTime'] ?? 30,
     );
   }
 }
