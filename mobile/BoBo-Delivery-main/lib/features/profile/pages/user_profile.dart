@@ -7,15 +7,14 @@ import 'package:bobo/features/profile/widgets/user_information_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+import 'package:bobo/services/auth_service.dart';
+import 'package:bobo/core/consts/widgets/guest_access_placeholder.dart';
+
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({super.key});
 
   @override
   State<UserProfileScreen> createState() => _UserProfileScreenState();
-
-
-
-
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
@@ -23,15 +22,31 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
+        preferredSize: const Size.fromHeight(60),
         child: CenterWidgetAppbar(
           title: Text('My Profile', style: AppTextStyle.poppins24Bold),
         ),
       ),
 
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body: FutureBuilder<bool>(
+        future: AuthService().isLoggedIn(),
+        builder: (context, authSnapshot) {
+          if (authSnapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final isLoggedIn = authSnapshot.data ?? false;
+          if (!isLoggedIn) {
+            return const GuestAccessPlaceholder(
+              title: 'Login Required',
+              description: 'Please log in or register to view your account details and profile settings.',
+              icon: Icons.person_outline_rounded,
+            );
+          }
+
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Row(
             //   mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +81,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ),
             Gap(20),
           ],
-        ),
+          );
+        },
       ),
     );
   }

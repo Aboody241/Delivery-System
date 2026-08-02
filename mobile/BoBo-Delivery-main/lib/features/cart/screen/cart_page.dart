@@ -11,6 +11,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
+import 'package:bobo/services/auth_service.dart';
+import 'package:bobo/core/consts/widgets/guest_access_placeholder.dart';
+
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
 
@@ -21,14 +24,50 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CartCubit, List<CartItem>>(
-      builder: (context, cartItems) {
-        double totalPrice = cartItems.fold(
-          0,
-          (sum, item) => sum + (item.price * item.quantity),
-        );
+    return FutureBuilder<bool>(
+      future: AuthService().isLoggedIn(),
+      builder: (context, authSnapshot) {
+        if (authSnapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
 
-        return Scaffold(
+        final isLoggedIn = authSnapshot.data ?? false;
+        if (!isLoggedIn) {
+          return Scaffold(
+            appBar: PreferredSize(
+              preferredSize: const Size.fromHeight(60),
+              child: CenterWidgetAppbar(
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icons/cart_icon.svg',
+                      width: 40,
+                      height: 40,
+                    ),
+                    Text('Cart', style: AppTextStyle.poppins22Bold),
+                  ],
+                ),
+              ),
+            ),
+            body: const GuestAccessPlaceholder(
+              title: 'Login Required',
+              description: 'Please log in or register to view and manage your shopping cart.',
+              icon: Icons.shopping_cart_outlined,
+            ),
+          );
+        }
+
+        return BlocBuilder<CartCubit, List<CartItem>>(
+          builder: (context, cartItems) {
+            double totalPrice = cartItems.fold(
+              0,
+              (sum, item) => sum + (item.price * item.quantity),
+            );
+
+            return Scaffold(
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(60),
             child: CenterWidgetAppbar(
@@ -156,6 +195,8 @@ class _CartPageState extends State<CartPage> {
                   ),
                 ),
         );
+      },
+    );
       },
     );
   }

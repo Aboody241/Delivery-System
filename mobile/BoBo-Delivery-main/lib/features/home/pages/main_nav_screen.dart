@@ -23,6 +23,7 @@ class _MainNavScreenState extends State<MainNavScreen> {
     super.initState();
     _controller = PersistentTabController(initialIndex: 0);
     context.read<CartCubit>().fetchCart();
+    context.read<UserCubit>().fetchUser();
   }
 
   @override

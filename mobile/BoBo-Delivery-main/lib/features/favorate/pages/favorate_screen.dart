@@ -10,6 +10,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:bobo/core/consts/routes/routes.dart';
 
+import 'package:bobo/services/auth_service.dart';
+import 'package:bobo/core/consts/widgets/guest_access_placeholder.dart';
+
 class FavorateScreen extends StatefulWidget {
   const FavorateScreen({super.key});
 
@@ -37,101 +40,118 @@ class _FavorateScreenState extends State<FavorateScreen> {
           ),
         ),
       ),
+      body: FutureBuilder<bool>(
+        future: AuthService().isLoggedIn(),
+        builder: (context, authSnapshot) {
+          if (authSnapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-      body: BlocBuilder<FavoriteCubit, List<Product>>(
-        builder: (context, state) {
-          if (state.isEmpty) {
-            return Center(
-              child: Text(
-                'Favorite List is empty',
-                style: AppTextStyle.poppins18Bold,
-              ),
+          final isLoggedIn = authSnapshot.data ?? false;
+          if (!isLoggedIn) {
+            return const GuestAccessPlaceholder(
+              title: 'Login Required',
+              description: 'Please log in or register to view and save your favorite meals.',
+              icon: Icons.favorite_border,
             );
           }
 
-          return ListView.builder(
-            itemCount: state.length,
-            itemBuilder: (context, index) {
-              final product = state[index];
-              return Container(
-                padding: EdgeInsets.all(3),
-                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
-                width: double.infinity,
-                height: 130,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Theme.of(context).dividerColor),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-
-                child: InkWell(
-                  onTap: () {
-                    Navigator.of(context, rootNavigator: true).pushNamed(
-                      AppRoutes.productDetailScreen,
-                      arguments: product,
-                    );
-                  },
-                  borderRadius: BorderRadius.circular(12),
-                  child: Row(
-                    children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          bottomLeft: Radius.circular(12),
-                          topRight: Radius.circular(4),
-                          bottomRight: Radius.circular(4),
-                        ),
-                        child: CachedNetworkImage(
-                          width: 140,
-                          height: double.infinity,
-                          fit: BoxFit.cover,
-                          imageUrl: product.image,
-                          memCacheWidth: 500,
-                          memCacheHeight: 500,
-                          placeholder: (context, url) =>
-                              Container(color: Colors.grey[300]),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        ),
-                      ),
-                      const Gap(10),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            const Gap(15),
-                            Text(
-                              product.name,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: AppTextStyle.poppins16.copyWith(
-                                color: AppColors.darkGrey300,
-                              ),
-                            ),
-                            const Gap(10),
-                            Text(
-                              '\$ ${product.price.toStringAsFixed(2)}',
-                              style: AppTextStyle.poppins18.copyWith(
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.remove,
-                          color: Colors.grey,
-                          size: 28,
-                        ),
-                        onPressed: () {
-                          context.read<FavoriteCubit>().toggleFavorite(product);
-                        },
-                      ),
-                      const Gap(5),
-                    ],
+          return BlocBuilder<FavoriteCubit, List<Product>>(
+            builder: (context, state) {
+              if (state.isEmpty) {
+                return Center(
+                  child: Text(
+                    'Favorite List is empty',
+                    style: AppTextStyle.poppins18Bold,
                   ),
-                ),
+                );
+              }
+
+              return ListView.builder(
+                itemCount: state.length,
+                itemBuilder: (context, index) {
+                  final product = state[index];
+                  return Container(
+                    padding: const EdgeInsets.all(3),
+                    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+                    width: double.infinity,
+                    height: 130,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Theme.of(context).dividerColor),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context, rootNavigator: true).pushNamed(
+                          AppRoutes.productDetailScreen,
+                          arguments: product,
+                        );
+                      },
+                      borderRadius: BorderRadius.circular(12),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              bottomLeft: Radius.circular(12),
+                              topRight: Radius.circular(4),
+                              bottomRight: Radius.circular(4),
+                            ),
+                            child: CachedNetworkImage(
+                              width: 140,
+                              height: double.infinity,
+                              fit: BoxFit.cover,
+                              imageUrl: product.image,
+                              memCacheWidth: 500,
+                              memCacheHeight: 500,
+                              placeholder: (context, url) =>
+                                  Container(color: Colors.grey[300]),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                            ),
+                          ),
+                          const Gap(10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Gap(15),
+                                Text(
+                                  product.name,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: AppTextStyle.poppins16.copyWith(
+                                    color: AppColors.darkGrey300,
+                                  ),
+                                ),
+                                const Gap(10),
+                                Text(
+                                  '\$ ${product.price.toStringAsFixed(2)}',
+                                  style: AppTextStyle.poppins18.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          IconButton(
+                            icon: const Icon(
+                              Icons.remove,
+                              color: Colors.grey,
+                              size: 28,
+                            ),
+                            onPressed: () {
+                              context.read<FavoriteCubit>().toggleFavorite(product);
+                            },
+                          ),
+                          const Gap(5),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               );
             },
           );
