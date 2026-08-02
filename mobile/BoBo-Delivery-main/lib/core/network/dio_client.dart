@@ -3,13 +3,16 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DioClient {
+  static final DioClient _instance = DioClient._internal();
+  factory DioClient() => _instance;
+
   static final String _baseUrl = Platform.isAndroid 
       ? 'http://10.0.2.2:8000/api/v1' 
       : 'http://localhost:8000/api/v1';
 
   late final Dio dio;
 
-  DioClient() {
+  DioClient._internal() {
     dio = Dio(
       BaseOptions(
         baseUrl: _baseUrl,

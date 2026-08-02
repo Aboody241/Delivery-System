@@ -134,8 +134,8 @@ This file tracks the development progress of the project.
 
 ## Authentication
 
-- [ ] Login
-- [ ] Register
+- [x] Login
+- [x] Register
 
 ---
 

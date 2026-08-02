@@ -1,24 +1,34 @@
 import 'package:bobo/controller/user/models/user_model.dart';
+import 'package:bobo/services/auth_service.dart';
 
 class UserRepository {
+  final AuthService _authService = AuthService();
+
   UserRepository();
 
   Future<UserModel?> getUser(String uid, String fallbackEmail) async {
-    // Return a default model for now.
-    // In the next step, this will fetch from the Laravel API (/me endpoint)
+    try {
+      final userMap = await _authService.fetchProfile();
+      if (userMap != null) {
+        return UserModel.fromFirestore(userMap, uid);
+      }
+    } catch (_) {
+      // Fallback to local representation if network fails
+    }
+
     return UserModel(
       uid: uid,
-      name: 'John Doe',
+      name: 'User',
       email: fallbackEmail,
-      phoneCode: '1',
-      phoneNumber: '5550123456',
-      birthday: '1995-05-15',
-      address: '456 Elm Street, Suite 4, Brooklyn, NY',
+      phoneCode: '',
+      phoneNumber: '',
+      birthday: '',
+      address: '',
     );
   }
 
   Future<void> saveUser(UserModel user) async {
-    // In the next step, this will send a PUT/PATCH update to the Laravel API
+    // We can implement profile updates to Backend in the future tasks
     await Future.delayed(const Duration(milliseconds: 300));
   }
 }
