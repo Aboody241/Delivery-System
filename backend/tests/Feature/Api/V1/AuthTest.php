@@ -74,7 +74,59 @@ class AuthTest extends TestCase
         $response = $this->postJson('/api/v1/register', []);
 
         $response->assertStatus(422)
-            ->assertJsonValidationErrors(['name', 'email', 'password', 'role']);
+            ->assertJsonValidationErrors(['name', 'email', 'password']);
+    }
+
+    /**
+     * Test registration defaults role to customer when not provided.
+     */
+    public function test_user_registration_defaults_role_to_customer(): void
+    {
+        $payload = [
+            'name' => 'Default Role User',
+            'email' => 'default_role@example.com',
+            'password' => 'password123',
+            'password_confirmation' => 'password123',
+            'phone' => '1234567890',
+            'address' => '123 Main St',
+        ];
+
+        $response = $this->postJson('/api/v1/register', $payload);
+
+        $response->assertStatus(201)
+            ->assertJsonStructure([
+                'status',
+                'message',
+                'data' => [
+                    'user' => [
+                        'id',
+                        'name',
+                        'email',
+                        'role',
+                        'phone',
+                        'address',
+                        'created_at',
+                    ],
+                    'access_token',
+                    'token_type',
+                ]
+            ])
+            ->assertJson([
+                'status' => 'success',
+                'data' => [
+                    'user' => [
+                        'name' => 'Default Role User',
+                        'email' => 'default_role@example.com',
+                        'role' => 'customer',
+                    ],
+                ]
+            ]);
+
+        $this->assertDatabaseHas('users', [
+            'name' => 'Default Role User',
+            'email' => 'default_role@example.com',
+            'role' => 'customer',
+        ]);
     }
 
     /**

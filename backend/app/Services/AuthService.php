@@ -20,7 +20,7 @@ class AuthService
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => $data['password'],
-            'role' => $data['role'],
+            'role' => $data['role'] ?? 'customer',
             'phone' => $data['phone'] ?? null,
             'address' => $data['address'] ?? null,
         ]);
