@@ -36,8 +36,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     }
   }
 
-  String? _selectedCoupon;
-  bool _isInitialized = false;
   Map<String, String> _selectedAddress = {
     'title': 'Home',
     'address': 'Home - 123 Main St, Apt 4B',
@@ -45,18 +43,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   Map<String, String> _selectedCard = {
     'title': 'Mastercard - Daniel Jones',
   };
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (!_isInitialized) {
-      final args = ModalRoute.of(context)?.settings.arguments;
-      if (args != null && args is String) {
-        _selectedCoupon = args;
-      }
-      _isInitialized = true;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,22 +54,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         );
         double deliveryCharges = cartItems.isEmpty ? 0.0 : 3.99;
 
-        // Calculate Discount
-        double discount = 0.0;
-        if (_selectedCoupon != null) {
-          if (_selectedCoupon == 'WELCOME50') {
-            discount = subtotal * 0.5;
-          } else if (_selectedCoupon == 'EXTRA20' && subtotal > 30) {
-            discount = subtotal * 0.2;
-          } else if (_selectedCoupon == 'WEEKEND5' && subtotal > 25) {
-            discount = 5.0;
-          } else if (_selectedCoupon == 'PIZZA10') {
-            discount = subtotal * 0.1;
-          }
-        }
-
-        double total = subtotal + deliveryCharges - discount;
-        if (total < 0) total = 0;
+        double total = subtotal + deliveryCharges;
 
         return BlocConsumer<OrderCubit, OrderState>(
           listener: (context, orderState) {
@@ -284,29 +255,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 ),
                               ],
                             ),
-                            if (discount > 0) ...[
-                              const Gap(14),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Coupon',
-                                    style: AppTextStyle.poppins16.copyWith(
-                                      color: Colors.grey[600],
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                  Text(
-                                    '-${discount.toStringAsFixed(1)}',
-                                    style: AppTextStyle.poppins16.copyWith(
-                                      color: Colors.grey[600],
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+
                             const Gap(14),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

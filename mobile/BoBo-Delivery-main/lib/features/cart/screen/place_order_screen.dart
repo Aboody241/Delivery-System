@@ -18,7 +18,6 @@ class PlaceOrderScreen extends StatefulWidget {
 }
 
 class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
-  String? _selectedCoupon = 'WELCOME50';
 
   @override
   Widget build(BuildContext context) {
@@ -29,21 +28,8 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
           (sum, item) => sum + (item.price * item.quantity),
         );
         double deliveryCharges = cartItems.isEmpty ? 0.0 : 3.99;
-        
-        double discount = 0.0;
-        if (_selectedCoupon != null) {
-          if (_selectedCoupon == 'WELCOME50') {
-            discount = subtotal * 0.5;
-          } else if (_selectedCoupon == 'EXTRA20' && subtotal > 30) {
-            discount = subtotal * 0.2;
-          } else if (_selectedCoupon == 'WEEKEND5' && subtotal > 25) {
-            discount = 5.0;
-          } else if (_selectedCoupon == 'PIZZA10') {
-            discount = subtotal * 0.1;
-          }
-        }
 
-        double total = subtotal + deliveryCharges - discount;
+        double total = subtotal + deliveryCharges;
 
         return Scaffold(
           backgroundColor: Colors.white,
@@ -112,86 +98,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                         },
                       ),
                     ),
-                    const SliverToBoxAdapter(child: Gap(20)),
-
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: GestureDetector(
-                          onTap: () async {
-                            final result = await Navigator.pushNamed(
-                              context,
-                              AppRoutes.addCoupone,
-                              arguments: _selectedCoupon,
-                            );
-                            if (result != null && result is String) {
-                              setState(() {
-                                _selectedCoupon = result;
-                              });
-                            }
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 16,
-                              horizontal: 16,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFF9FAF8),
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: const Color(0xFFECECEC),
-                                width: 1.2,
-                              ),
-                            ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.confirmation_num_outlined,
-                                  color: AppColors.lightTypography200,
-                                  size: 24,
-                                ),
-                                const Gap(16),
-                                Expanded(
-                                  child: _selectedCoupon != null
-                                      ? Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'COUPON',
-                                              style: AppTextStyle.poppins12.copyWith(
-                                                color: AppColors.lightTypography200,
-                                                fontWeight: FontWeight.w600,
-                                                letterSpacing: 0.5,
-                                              ),
-                                            ),
-                                            const Gap(2),
-                                            Text(
-                                              _selectedCoupon!,
-                                              style: AppTextStyle.poppins16Bold.copyWith(
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      : Text(
-                                          'Add a coupon',
-                                          style: AppTextStyle.poppins14.copyWith(
-                                            color: Colors.grey[600],
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios_rounded,
-                                  color: AppColors.lightTypography200,
-                                  size: 16,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    const SliverToBoxAdapter(child: SizedBox.shrink()),
 
                     const SliverToBoxAdapter(child: Gap(25)),
                     SliverToBoxAdapter(
@@ -236,27 +143,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                                 ),
                               ],
                             ),
-                            if (discount > 0) ...[
-                              const Gap(12),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Discount ($_selectedCoupon)',
-                                    style: AppTextStyle.poppins16.copyWith(
-                                      color: AppColors.lightPrimary500,
-                                    ),
-                                  ),
-                                  Text(
-                                    '-\$${discount.toStringAsFixed(2)}',
-                                    style: AppTextStyle.poppins16.copyWith(
-                                      color: AppColors.lightPrimary500,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+
                             const Gap(10),
                             const Divider(
                               color: Color.fromARGB(255, 230, 230, 230),
