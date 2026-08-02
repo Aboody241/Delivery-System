@@ -115,7 +115,7 @@ This file tracks the development progress of the project.
 - [x] Dashboard
 - [x] Restaurants
 - [x] Categories
-- [ ] Products
+- [x] Products
 - [ ] Orders
 - [ ] Users
 
