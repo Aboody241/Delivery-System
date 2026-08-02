@@ -129,4 +129,32 @@ class AuthService {
       throw e.response?.data?['message'] ?? 'Failed to fetch user profile';
     }
   }
+
+  Future<Map<String, dynamic>?> updateProfile({
+    required String name,
+    required String phone,
+    required String address,
+  }) async {
+    try {
+      final response = await _dio.put('/me', data: {
+        'name': name,
+        'phone': phone,
+        'address': address,
+      });
+
+      final responseData = response.data;
+      if (responseData['status'] == 'success') {
+        final user = responseData['data'];
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('user_name', user['name'] ?? '');
+        await prefs.setString('user_phone', user['phone'] ?? '');
+        await prefs.setString('user_address', user['address'] ?? '');
+        return user;
+      } else {
+        throw responseData['message'] ?? 'Profile update failed';
+      }
+    } on DioException catch (e) {
+      throw e.response?.data?['message'] ?? e.message ?? 'Connection error';
+    }
+  }
 }

@@ -166,9 +166,9 @@ This file tracks the development progress of the project.
 
 ## Profile
 
-- [ ] View Profile
-- [ ] Edit Profile
-- [ ] Logout
+- [x] View Profile
+- [x] Edit Profile
+- [x] Logout
 
 ---
 

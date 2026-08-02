@@ -83,4 +83,28 @@ class AuthController extends ApiController
             'Current user profile retrieved successfully'
         );
     }
+
+    /**
+     * Update the authenticated user's profile.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateProfile(\Illuminate\Http\Request $request): JsonResponse
+    {
+        $user = $request->user();
+
+        $validated = $request->validate([
+            'name' => ['sometimes', 'string', 'max:255'],
+            'phone' => ['nullable', 'string', 'max:50'],
+            'address' => ['nullable', 'string', 'max:1000'],
+        ]);
+
+        $user->update($validated);
+
+        return $this->successResponse(
+            new UserResource($user),
+            'Profile updated successfully'
+        );
+    }
 }

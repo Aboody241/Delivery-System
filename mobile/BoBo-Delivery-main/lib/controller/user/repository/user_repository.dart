@@ -28,7 +28,14 @@ class UserRepository {
   }
 
   Future<void> saveUser(UserModel user) async {
-    // We can implement profile updates to Backend in the future tasks
-    await Future.delayed(const Duration(milliseconds: 300));
+    try {
+      await _authService.updateProfile(
+        name: user.name,
+        phone: '${user.phoneCode}${user.phoneNumber}',
+        address: user.address,
+      );
+    } catch (e) {
+      throw 'Failed to save profile: $e';
+    }
   }
 }
