@@ -11,7 +11,6 @@ import 'package:bobo/features/cart/screen/checkout/checkout_screen.dart';
 import 'package:bobo/features/cart/screen/coupon/add_coupone.dart';
 import 'package:bobo/features/cart/screen/order_submitted.dart';
 import 'package:bobo/features/cart/screen/place_order_screen.dart';
-import 'package:bobo/features/discover_page/pages/discover_screen.dart';
 import 'package:bobo/features/favorate/pages/favorate_screen.dart';
 import 'package:bobo/features/home/pages/restaurant_products_screen.dart';
 import 'package:bobo/features/home/pages/main_nav_screen.dart';
@@ -50,7 +49,6 @@ class AppRoutes {
   static const String orderSubmitted = '/orderSubmittedScreen';
   static const String userProfileScreen = '/userProfileScreen';
   static const String myOrdersScreen = '/myOrdersScreen';
-  static const String discoverScreen = '/discoverScreen';
   static const String favorateScreen = '/favorateScreen';
   static const String palceOrderScreen = '/palceOrderScreen';
   static const String restaurantProductsScreen = '/restaurantProductsScreen';
@@ -156,11 +154,6 @@ class AppRoutes {
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => const UserProfileScreen(),
-        );
-      case discoverScreen:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => const DiscoverScreen(),
         );
       case favorateScreen:
         return MaterialPageRoute(

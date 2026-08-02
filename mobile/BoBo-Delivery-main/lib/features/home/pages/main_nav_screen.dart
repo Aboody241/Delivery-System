@@ -1,6 +1,5 @@
 import 'package:bobo/controller/user/cubit/user_cubit.dart';
 import 'package:bobo/features/cart/screen/cart_page.dart';
-import 'package:bobo/features/discover_page/pages/discover_screen.dart';
 import 'package:bobo/features/favorate/pages/favorate_screen.dart';
 import 'package:bobo/features/home/pages/home_page_screen.dart';
 import 'package:bobo/features/profile/pages/user_profile.dart';
@@ -36,7 +35,6 @@ class _MainNavScreenState extends State<MainNavScreen> {
   List<Widget> _buildScreens() {
     return [
       const HomePageScreen(),
-      const DiscoverScreen(),
       const CartPage(),
       const FavorateScreen(),
       const UserProfileScreen(),
@@ -48,12 +46,6 @@ class _MainNavScreenState extends State<MainNavScreen> {
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.home),
         title: ("Home"),
-        activeColorPrimary: Theme.of(context).colorScheme.primary,
-        inactiveColorPrimary: Colors.grey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(Icons.search),
-        title: ("Search"),
         activeColorPrimary: Theme.of(context).colorScheme.primary,
         inactiveColorPrimary: Colors.grey,
       ),

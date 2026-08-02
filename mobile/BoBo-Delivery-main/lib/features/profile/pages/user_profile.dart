@@ -81,9 +81,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ),
             Gap(20),
           ],
-          ));
-        },
-      ),
-    );
+        ),
+      );
+    },
+  ),
+);
   }
 }
