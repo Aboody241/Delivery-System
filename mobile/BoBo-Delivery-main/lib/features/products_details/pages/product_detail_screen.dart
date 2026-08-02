@@ -335,7 +335,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 onPressed: () {
                   context.read<CartCubit>().addItemWithQuantity(
                     CartItem(
-                      id: product.name,
+                      id: product.id,
                       title: product.name,
                       price: product.price,
                       imageUrl: product.image,

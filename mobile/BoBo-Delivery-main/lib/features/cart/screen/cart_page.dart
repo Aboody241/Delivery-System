@@ -86,32 +86,35 @@ class _CartPageState extends State<CartPage> {
           ),
           body: cartItems.isEmpty
               ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 200,
-                        width: 200,
-                        child: Image.asset('assets/consts/notfound.png'),
-                      ),
-                      Gap(40),
-                      Text(
-                        'There is no Products in the Cart!',
-                        style: AppTextStyle.poppins30.copyWith(
-                          fontWeight: FontWeight.bold,
+                  child: Padding(
+                    padding: const EdgeInsets.all(19),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 200,
+                          width: 200,
+                          child: Image.asset('assets/consts/notfound.png'),
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Gap(10),
-                      Text(
-                        'You can Discover More Products \nwe will be shown here as well.',
-                        style: AppTextStyle.poppins14.copyWith(
-                          color: AppColors.darkGrey400,
+                        Gap(40),
+                        Text(
+                          'There is no Products\n in the Cart!',
+                          style: AppTextStyle.poppins30.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Gap(100),
-                    ],
+                        Gap(10),
+                        Text(
+                          'You can Discover More Products \nwe will be shown here as well.',
+                          style: AppTextStyle.poppins14.copyWith(
+                            color: AppColors.darkGrey400,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        Gap(100),
+                      ],
+                    ),
                   ),
                 )
               : CustomScrollView(

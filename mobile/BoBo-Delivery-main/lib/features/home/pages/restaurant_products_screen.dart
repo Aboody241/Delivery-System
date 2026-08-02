@@ -383,11 +383,11 @@ class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
                                                       Text("\$${food.price}", style: AppTextStyle.poppins16Bold),
                                                       BlocBuilder<CartCubit, List<CartItem>>(
                                                         builder: (context, cartItems) {
-                                                          final isAdded = cartItems.any((item) => item.id == food.name);
+                                                          final isAdded = cartItems.any((item) => item.id == food.id);
                                                           return GestureDetector(
                                                             onTap: () {
                                                               if (isAdded) {
-                                                                context.read<CartCubit>().removeItem(food.name);
+                                                                context.read<CartCubit>().removeItem(food.id);
                                                                 showSimpleNotification(
                                                                   Text('${food.name} removed from Cart', style: const TextStyle(color: Colors.white)),
                                                                   background: Colors.redAccent,
@@ -395,7 +395,7 @@ class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
                                                               } else {
                                                                 context.read<CartCubit>().addItem(
                                                                       CartItem(
-                                                                        id: food.name,
+                                                                        id: food.id,
                                                                         title: food.name,
                                                                         price: food.price,
                                                                         imageUrl: food.image,

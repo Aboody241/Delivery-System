@@ -178,14 +178,14 @@ class HomeProductsListState extends State<HomeProductsList> {
                                   BlocBuilder<CartCubit, List<CartItem>>(
                                     builder: (context, cartItems) {
                                       final isAdded = cartItems.any(
-                                        (item) => item.id == food.name,
+                                        (item) => item.id == food.id,
                                       );
                                       return GestureDetector(
                                         onTap: () {
                                           if (isAdded) {
                                             context
                                                 .read<CartCubit>()
-                                                .removeItem(food.name);
+                                                .removeItem(food.id);
                                             showSimpleNotification(
                                               Text(
                                                 '${food.name} removed from Cart',
@@ -202,7 +202,7 @@ class HomeProductsListState extends State<HomeProductsList> {
                                           } else {
                                             context.read<CartCubit>().addItem(
                                               CartItem(
-                                                id: food.name,
+                                                id: food.id,
                                                 title: food.name,
                                                 price: food.price,
                                                 imageUrl: food.image,
