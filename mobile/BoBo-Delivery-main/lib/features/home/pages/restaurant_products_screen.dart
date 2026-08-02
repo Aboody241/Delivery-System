@@ -447,3 +447,31 @@ class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
     );
   }
 }
+
+class SearchBarDelegate extends SliverPersistentHeaderDelegate {
+  final TextEditingController controller;
+
+  SearchBarDelegate(this.controller);
+
+  @override
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
+    return Container(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: CustomSearchBar(controller: controller),
+    );
+  }
+
+  @override
+  double get maxExtent => 60;
+  @override
+  double get minExtent => 60;
+
+  @override
+  bool shouldRebuild(covariant SearchBarDelegate oldDelegate) =>
+      oldDelegate.controller != controller;
+}
