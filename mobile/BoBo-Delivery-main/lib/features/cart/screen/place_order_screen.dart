@@ -220,7 +220,6 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                               rootNavigator: true,
                             ).pushNamed(
                               AppRoutes.checkoutScreen,
-                              arguments: _selectedCoupon,
                             );
                           },
                           title: 'Continue',
