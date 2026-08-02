@@ -1,0 +1,369 @@
+﻿	at org.gradle.laun
+cher.exec.RunAsBuil
+dOperationBuildActi
+onExecutor$2.call(R
+unAsBuildOperationB
+uildActionExecutor.
+java:63)
+	at org.gradle.inte
+rnal.operations.Def
+aultBuildOperationR
+unner$CallableBuild
+OperationWorker.exe
+cute(DefaultBuildOp
+erationRunner.java:
+210)
+	at org.gradle.inte
+rnal.operations.Def
+aultBuildOperationR
+unner$CallableBuild
+OperationWorker.exe
+cute(DefaultBuildOp
+erationRunner.java:
+205)
+	at org.gradle.inte
+rnal.operations.Def
+aultBuildOperationR
+unner$2.execute(Def
+aultBuildOperationR
+unner.java:67)
+	at org.gradle.inte
+rnal.operations.Def
+aultBuildOperationR
+unner$2.execute(Def
+aultBuildOperationR
+unner.java:60)
+	at org.gradle.inte
+rnal.operations.Def
+aultBuildOperationR
+unner.execute(Defau
+ltBuildOperationRun
+ner.java:167)
+	at org.gradle.inte
+rnal.operations.Def
+aultBuildOperationR
+unner.execute(Defau
+ltBuildOperationRun
+ner.java:60)
+	at org.gradle.inte
+rnal.operations.Def
+aultBuildOperationR
+unner.call(DefaultB
+uildOperationRunner
+.java:54)
+	at org.gradle.laun
+cher.exec.RunAsBuil
+dOperationBuildActi
+onExecutor.execute(
+RunAsBuildOperation
+BuildActionExecutor
+.java:63)
+	at org.gradle.laun
+cher.exec.RunAsWork
+erThreadBuildAction
+Executor.lambda$exe
+cute$0(RunAsWorkerT
+hreadBuildActionExe
+cutor.java:36)
+	at org.gradle.inte
+rnal.work.DefaultWo
+rkerLeaseService.wi
+thLocks(DefaultWork
+erLeaseService.java
+:263)
+	at org.gradle.inte
+rnal.work.DefaultWo
+rkerLeaseService.ru
+nAsWorkerThread(Def
+aultWorkerLeaseServ
+ice.java:127)
+	at org.gradle.laun
+cher.exec.RunAsWork
+erThreadBuildAction
+Executor.execute(Ru
+nAsWorkerThreadBuil
+dActionExecutor.jav
+a:36)
+	at org.gradle.tool
+ing.internal.provid
+er.continuous.Conti
+nuousBuildActionExe
+cutor.execute(Conti
+nuousBuildActionExe
+cutor.java:110)
+	at org.gradle.tool
+ing.internal.provid
+er.SubscribableBuil
+dActionExecutor.exe
+cute(SubscribableBu
+ildActionExecutor.j
+ava:64)
+	at org.gradle.inte
+rnal.session.Defaul
+tBuildSessionContex
+t.execute(DefaultBu
+ildSessionContext.j
+ava:46)
+	at org.gradle.inte
+rnal.buildprocess.e
+xecution.BuildSessi
+onLifecycleBuildAct
+ionExecutor$ActionI
+mpl.apply(BuildSess
+ionLifecycleBuildAc
+tionExecutor.java:9
+2)
+	at org.gradle.inte
+rnal.buildprocess.e
+xecution.BuildSessi
+onLifecycleBuildAct
+ionExecutor$ActionI
+mpl.apply(BuildSess
+ionLifecycleBuildAc
+tionExecutor.java:8
+0)
+	at org.gradle.inte
+rnal.session.BuildS
+essionState.run(Bui
+ldSessionState.java
+:73)
+	at org.gradle.inte
+rnal.buildprocess.e
+xecution.BuildSessi
+onLifecycleBuildAct
+ionExecutor.execute
+(BuildSessionLifecy
+cleBuildActionExecu
+tor.java:62)
+	at org.gradle.inte
+rnal.buildprocess.e
+xecution.BuildSessi
+onLifecycleBuildAct
+ionExecutor.execute
+(BuildSessionLifecy
+cleBuildActionExecu
+tor.java:41)
+	at org.gradle.inte
+rnal.buildprocess.e
+xecution.StartParam
+sValidatingActionEx
+ecutor.execute(Star
+tParamsValidatingAc
+tionExecutor.java:6
+4)
+	at org.gradle.inte
+rnal.buildprocess.e
+xecution.StartParam
+sValidatingActionEx
+ecutor.execute(Star
+tParamsValidatingAc
+tionExecutor.java:3
+2)
+	at org.gradle.inte
+rnal.buildprocess.e
+xecution.SessionFai
+lureReportingAction
+Executor.execute(Se
+ssionFailureReporti
+ngActionExecutor.ja
+va:51)
+	at org.gradle.inte
+rnal.buildprocess.e
+xecution.SessionFai
+lureReportingAction
+Executor.execute(Se
+ssionFailureReporti
+ngActionExecutor.ja
+va:39)
+	at org.gradle.inte
+rnal.buildprocess.e
+xecution.SetupLoggi
+ngActionExecutor.ex
+ecute(SetupLoggingA
+ctionExecutor.java:
+47)
+	at org.gradle.inte
+rnal.buildprocess.e
+xecution.SetupLoggi
+ngActionExecutor.ex
+ecute(SetupLoggingA
+ctionExecutor.java:
+31)
+	at org.gradle.laun
+cher.daemon.server.
+exec.ExecuteBuild.d
+oBuild(ExecuteBuild
+.java:70)
+	at org.gradle.laun
+cher.daemon.server.
+exec.BuildCommandOn
+ly.execute(BuildCom
+mandOnly.java:37)
+	at org.gradle.laun
+cher.daemon.server.
+api.DaemonCommandEx
+ecution.proceed(Dae
+monCommandExecution
+.java:104)
+	at org.gradle.laun
+cher.daemon.server.
+exec.WatchForDiscon
+nection.execute(Wat
+chForDisconnection.
+java:39)
+	at org.gradle.laun
+cher.daemon.server.
+api.DaemonCommandEx
+ecution.proceed(Dae
+monCommandExecution
+.java:104)
+	at org.gradle.laun
+cher.daemon.server.
+exec.ResetDeprecati
+onLogger.execute(Re
+setDeprecationLogge
+r.java:29)
+	at org.gradle.laun
+cher.daemon.server.
+api.DaemonCommandEx
+ecution.proceed(Dae
+monCommandExecution
+.java:104)
+	at org.gradle.laun
+cher.daemon.server.
+exec.RequestStopIfS
+ingleUsedDaemon.exe
+cute(RequestStopIfS
+ingleUsedDaemon.jav
+a:35)
+	at org.gradle.laun
+cher.daemon.server.
+api.DaemonCommandEx
+ecution.proceed(Dae
+monCommandExecution
+.java:104)
+	at org.gradle.laun
+cher.daemon.server.
+exec.ForwardClientI
+nput.lambda$execute
+$0(ForwardClientInp
+ut.java:40)
+	at org.gradle.inte
+rnal.daemon.clienti
+nput.ClientInputFor
+warder.forwardInput
+(ClientInputForward
+er.java:80)
+	at org.gradle.laun
+cher.daemon.server.
+exec.ForwardClientI
+nput.execute(Forwar
+dClientInput.java:3
+7)
+	at org.gradle.laun
+cher.daemon.server.
+api.DaemonCommandEx
+ecution.proceed(Dae
+monCommandExecution
+.java:104)
+	at org.gradle.laun
+cher.daemon.server.
+exec.LogAndCheckHea
+lth.execute(LogAndC
+heckHealth.java:64)
+	at org.gradle.laun
+cher.daemon.server.
+api.DaemonCommandEx
+ecution.proceed(Dae
+monCommandExecution
+.java:104)
+	at org.gradle.laun
+cher.daemon.server.
+exec.LogToClient.do
+Build(LogToClient.j
+ava:63)
+	at org.gradle.laun
+cher.daemon.server.
+exec.BuildCommandOn
+ly.execute(BuildCom
+mandOnly.java:37)
+	at org.gradle.laun
+cher.daemon.server.
+api.DaemonCommandEx
+ecution.proceed(Dae
+monCommandExecution
+.java:104)
+	at org.gradle.laun
+cher.daemon.server.
+exec.EstablishBuild
+Environment.doBuild
+(EstablishBuildEnvi
+ronment.java:84)
+	at org.gradle.laun
+cher.daemon.server.
+exec.BuildCommandOn
+ly.execute(BuildCom
+mandOnly.java:37)
+	at org.gradle.laun
+cher.daemon.server.
+api.DaemonCommandEx
+ecution.proceed(Dae
+monCommandExecution
+.java:104)
+	at org.gradle.laun
+cher.daemon.server.
+exec.StartBuildOrRe
+spondWithBusy$1.run
+(StartBuildOrRespon
+dWithBusy.java:52)
+	at org.gradle.laun
+cher.daemon.server.
+DaemonStateCoordina
+tor.lambda$runComma
+nd$0(DaemonStateCoo
+rdinator.java:321)
+	at org.gradle.inte
+rnal.concurrent.Exe
+cutorPolicy$CatchAn
+dRecordFailures.onE
+xecute(ExecutorPoli
+cy.java:64)
+	at org.gradle.inte
+rnal.concurrent.Abs
+tractManagedExecuto
+r$1.run(AbstractMan
+agedExecutor.java:4
+8)
+Caused by: org.grad
+le.plugin.managemen
+t.internal.InvalidP
+luginRequestExcepti
+on: The request 
+for this plugin 
+could not be 
+satisfied because 
+the plugin is 
+already on the 
+classpath with a 
+different version 
+(4.3.15).
+	at org.gradle.plug
+in.use.resolve.inte
+rnal.AlreadyOnClass
+pathPluginResolver.
+resolve(AlreadyOnCl
+asspathPluginResolv
+er.java:95)
+	at org.gradle.plug
+in.use.internal.Def
+aultPluginRequestAp
+plicator.resolvePlu
+ginRequest(DefaultP
+luginRequestApplica
+tor.java:189)
+	... 166 more
+
+
+BUILD FAILED in 39s
+4 actionable tasks: 3 executed, 1 up-to-date
+

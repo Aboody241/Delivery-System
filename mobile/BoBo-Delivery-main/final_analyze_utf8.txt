@@ -1,0 +1,18 @@
+﻿Analyzing BoBo-Delivery...                                      
+
+   info - Use a 'SizedBox' to add whitespace to a layout - lib\core\components\not_found_screen.dart:22:13 - sized_box_for_whitespace
+   info - The file name 'verfiy_OPT_NewAccount.dart' isn't a lower_case_with_underscores identifier - lib\core\consts\pages\verfiy_OPT_NewAccount.dart:1:1 - file_names
+warning - Unused import: 'package:bobo/features/home/pages/home_page_screen.dart' - lib\core\consts\routes\routes.dart:7:8 - unused_import
+   info - The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' - lib\core\consts\widgets\button_style.dart:1:8 - unnecessary_import
+   info - The file name 'verfieOPTpage.dart' isn't a lower_case_with_underscores identifier - lib\features\auth\forgetpassword\pages\verfieOPTpage.dart:1:1 - file_names
+   info - Don't use 'BuildContext's across async gaps - lib\features\auth\login\pages\login_page_screen.dart:60:38 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\auth\login\pages\login_page_screen.dart:63:9 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\auth\signup\pages\create_account_screen.dart:68:38 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\auth\signup\pages\create_account_screen.dart:71:9 - use_build_context_synchronously
+   info - The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' - lib\features\home\pages\home_page_screen.dart:1:8 - unnecessary_import
+warning - The value of the local variable 'authService' isn't used - lib\features\home\widgets\home_appbar.dart:13:23 - unused_local_variable
+   info - Don't use 'BuildContext's across async gaps - lib\features\home\widgets\home_appbar.dart:52:50 - use_build_context_synchronously
+   info - The import of 'package:carousel_slider/carousel_options.dart' is unnecessary because all of the used elements are also provided by the import of 'package:carousel_slider/carousel_slider.dart' - lib\features\home\widgets\home_slider_banner.dart:1:8 - unnecessary_import
+   info - Constructors in '@immutable' classes should be declared as 'const' - lib\features\profile\widgets\phone_form.dart:7:3 - prefer_const_constructors_in_immutables
+warning - Unused import: 'package:bobo/features/auth/login/pages/login_page_screen.dart' - lib\main.dart:3:8 - unused_import
+

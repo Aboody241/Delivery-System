@@ -1,0 +1,23 @@
+Running Gradle task 'assembleDebug'...                          
+[rive_native]   Starting Rive Native Setup...
+
+[rive_native]   Building rive_native with assumed project root in:
+[rive_native]   C:\Users\ounab\OneDrive\Desktop\flutter apps\Apps\e-commerce app\BoBo_Delivery\BoBo-Delivery\
+
+[rive_native]   Using package:rive_native from C:\Users\ounab\AppData\Local\Pub\Cache\hosted\pub.dev\rive_native-0.1.4
+[rive_native]   Found Flutter app root at: C:\Users\ounab\OneDrive\Desktop\flutter apps\Apps\e-commerce app\BoBo_Delivery\BoBo-Delivery
+[rive_native]   Initializing Rive Native for TargetPlatform.android. This may take some time the first time it is run.
+[rive_native]   Downloading "android" libraries for version "0.1.4+1"
+[rive_native]   URL: https://rive-flutter-artifacts.rive.app/rive_native_versions/0.1.4%2B1/rive_native_artifacts_android.zip
+[rive_native]   Using temporary directory: C:\Users\ounab\AppData\Local\Temp\rive_native_93042240
+[rive_native]   Downloaded and unzipped "android" libraries for version "0.1.4+1"
+[rive_native]   Creating build directory: C:\Users\ounab\OneDrive\Desktop\flutter apps\Apps\e-commerce app\BoBo_Delivery\BoBo-Delivery/build/rive_native/native/build
+[rive_native]   Setup complete. You can now use Rive Native in your project.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+[CXX1101] NDK at C:\Users\ounab\AppData\Local\Android\sdk\ndk\27.0.12077973 did not have a source.properties file
+[CXX1101] NDK at C:\Users\ounab\AppData\Local\Android\sdk\ndk\27.0.12077973 did not have a source.properties file
+[CXX1101] NDK at C:\Users\ounab\AppData\Local\Android\sdk\ndk\27.0.12077973 did not have a source.properties file
+[CXX1101] NDK at C:\Users\ounab\AppData\Local\Android\sdk\ndk\27.0.12077973 did not have a source.properties file
+Running Gradle task 'assembleDebug'...                            119.2s
+√ Built build\app\outputs\flutter-apk\app-debug.apk

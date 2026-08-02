@@ -1,0 +1,5 @@
+﻿Analyzing BoBo-Delivery...                                      
+
+   info - The file name 'verfiy_OPT_NewAccount.dart' isn't a lower_case_with_underscores identifier - lib\core\consts\pages\verfiy_OPT_NewAccount.dart:1:1 - file_names
+   info - The file name 'verfieOPTpage.dart' isn't a lower_case_with_underscores identifier - lib\features\auth\forgetpassword\pages\verfieOPTpage.dart:1:1 - file_names
+

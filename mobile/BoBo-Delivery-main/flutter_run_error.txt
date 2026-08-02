@@ -1,0 +1,268 @@
+﻿
+[   +4 ms] C:\src\f
+lutter\bin\cache\da
+rt-sdk\bin\dartaotr
+untime.exe C:\src\f
+lutter\bin\cache\da
+rt-sdk\bin\snapshot
+s\frontend_server_a
+ot.dart.snapshot 
+--sdk-root C:\src\f
+lutter\bin\cache\ar
+tifacts\engine\comm
+on\flutter_patched_
+sdk/ --incremental 
+--target=flutter --
+experimental-emit-d
+ebug-metadata -DFLU
+TTER_VERSION=3.41.0
+ -DFLUTTER_CHANNEL=
+stable -DFLUTTER_GI
+T_URL=https://githu
+b.com/flutter/flutt
+er.git -DFLUTTER_FR
+AMEWORK_REVISION=44
+a626f4f0 -DFLUTTER_
+ENGINE_REVISION=345
+2d735bd -DFLUTTER_D
+ART_VERSION=3.11.0 
+--output-dill C:\Us
+ers\ounab\AppData\L
+ocal\Temp\flutter_t
+ools.4bead43e\flutt
+er_tool.8b532881\ap
+p.dill --packages C
+:\Users\ounab\OneDr
+ive\Desktop\flutter
+ apps\Apps\e-commer
+ce app\BoBo_Deliver
+y\BoBo-Delivery\.da
+rt_tool\package_con
+fig.json -Ddart.vm.
+profile=false -Ddar
+t.vm.product=false 
+--enable-asserts --
+track-widget-creati
+on --filesystem-sch
+eme 
+org-dartlang-root -
+-initialize-from-di
+ll build\b91b994338
+c11c54cf5c76fd8ba5a
+cce.cache.dill.trac
+k.dill --source fil
+e:///C:/Users/ounab
+/OneDrive/Desktop/f
+lutter%20apps/Apps/
+e-commerce%20app/Bo
+Bo_Delivery/BoBo-De
+livery/.dart_tool/f
+lutter_build/dart_p
+lugin_registrant.da
+rt --source package
+:flutter/src/dart_p
+lugin_registrant.da
+rt -Dflutter.dart_p
+lugin_registrant=fi
+le:///C:/Users/ouna
+b/OneDrive/Desktop/
+flutter%20apps/Apps
+/e-commerce%20app/B
+oBo_Delivery/BoBo-D
+elivery/.dart_tool/
+flutter_build/dart_
+plugin_registrant.d
+art 
+--verbosity=error -
+-enable-experiment=
+alternative-invalid
+ation-strategy
+[ +321 ms] Found 
+daemon DaemonInfo{p
+id=8852, address=[2
+e32930f-a45f-4f4a-8
+d9e-46c4be8e0441 
+port:58598, address
+es:[/127.0.0.1]], 
+state=Idle, lastBus
+y=1771575972263, co
+ntext=DefaultDaemon
+Context[uid=b09a201
+2-778b-4fa4-92b0-7e
+3535e08c64,javaHome
+=C:\Program 
+Files\Eclipse Adopt
+ium\jdk-17,javaVers
+ion=17,javaVendor=E
+clipse Adoptium,dae
+monRegistryDir=C:\U
+sers\ounab\.gradle\
+daemon,pid=8852,idl
+eTimeout=10800000,p
+riority=NORMAL,appl
+yInstrumentationAge
+nt=true,nativeServi
+cesMode=ENABLED,dae
+monOpts=-XX:MaxMeta
+spaceSize=4G,-XX:Re
+servedCodeCacheSize
+=512m,-XX:+HeapDump
+OnOutOfMemoryError,
+-Xmx8G,-Dfile.encod
+ing=windows-1252,-D
+user.country=US,-Du
+ser.language=en,-Du
+ser.variant]} 
+however its 
+context does not 
+match the desired 
+criteria.
+[        ] Wanted: 
+DaemonRequestContex
+t{jvmCriteria=C:\Pr
+ogram Files\Android
+\Android 
+Studio\jbr (no JDK 
+specified, using 
+current Java 
+home), daemonOpts=[
+-XX:MaxMetaspaceSiz
+e=4G, -XX:ReservedC
+odeCacheSize=512m, 
+-XX:+HeapDumpOnOutO
+fMemoryError, 
+-Xmx8G, -Dfile.enco
+ding=UTF-8, 
+-Duser.country=US, 
+-Duser.language=en,
+ -Duser.variant], a
+pplyInstrumentation
+Agent=true, nativeS
+ervicesMode=ENABLED
+, priority=NORMAL}
+[        ] Actual: 
+DefaultDaemonContex
+t[uid=b09a2012-778b
+-4fa4-92b0-7e3535e0
+8c64,javaHome=C:\Pr
+ogram 
+Files\Eclipse Adopt
+ium\jdk-17,javaVers
+ion=17,javaVendor=E
+clipse Adoptium,dae
+monRegistryDir=C:\U
+sers\ounab\.gradle\
+daemon,pid=8852,idl
+eTimeout=10800000,p
+riority=NORMAL,appl
+yInstrumentationAge
+nt=true,nativeServi
+cesMode=ENABLED,dae
+monOpts=-XX:MaxMeta
+spaceSize=4G,-XX:Re
+servedCodeCacheSize
+=512m,-XX:+HeapDump
+OnOutOfMemoryError,
+-Xmx8G,-Dfile.encod
+ing=windows-1252,-D
+user.country=US,-Du
+ser.language=en,-Du
+ser.variant]
+[ +104 ms] Resolve 
+mutations for :grad
+le:checkKotlinGradl
+ePluginConfiguratio
+nErrors (Thread[#58
+1,Execution 
+worker,5,main]) 
+started.
+[        ] :gradle:
+checkKotlinGradlePl
+uginConfigurationEr
+rors (Thread[#581,E
+xecution 
+worker,5,main]) 
+started.
+[        ] > Task :
+gradle:checkKotlinG
+radlePluginConfigur
+ationErrors SKIPPED
+[        ] 
+Skipping task ':gra
+dle:checkKotlinGrad
+lePluginConfigurati
+onErrors' as task 
+onlyIf 
+'errorDiagnostics 
+are present' is 
+false.
+[  +78 ms] 
+FAILURE: Build 
+failed with an 
+exception.
+[        ] Error 
+resolving plugin 
+[id: 'com.google.gm
+s.google-services',
+ version: '4.4.4', 
+apply: false]
+[        ] * 
+Exception is:
+[        ] org.grad
+le.api.GradleExcept
+ion: Error 
+resolving plugin 
+[id: 'com.google.gm
+s.google-services',
+ version: '4.4.4', 
+apply: false]
+[        ] 	at org.
+gradle.internal.bui
+ldprocess.execution
+.SessionFailureRepo
+rtingActionExecutor
+.execute(SessionFai
+lureReportingAction
+Executor.java:51)
+[        ] 	at org.
+gradle.internal.bui
+ldprocess.execution
+.SessionFailureRepo
+rtingActionExecutor
+.execute(SessionFai
+lureReportingAction
+Executor.java:39)
+[        ] 	at org.
+gradle.internal.con
+current.ExecutorPol
+icy$CatchAndRecordF
+ailures.onExecute(E
+xecutorPolicy.java:
+64)
+[        ] Caused 
+by: org.gradle.plug
+in.management.inter
+nal.InvalidPluginRe
+questException: 
+The request for 
+this plugin could 
+not be satisfied 
+because the plugin 
+is already on the 
+classpath with a 
+different version 
+(4.3.15).
+[  +38 ms] Error: 
+Gradle task 
+assembleDebug 
+failed with exit 
+code 1
+System.Management.A
+utomation.RemoteExc
+eption
+System.Management.A
+utomation.RemoteExc
+eption
+
+
+

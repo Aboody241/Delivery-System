@@ -1,0 +1,15 @@
+﻿Analyzing BoBo-Delivery...                                      
+
+   info - Use a 'SizedBox' to add whitespace to a layout - lib\core\components\not_found_screen.dart:22:13 - sized_box_for_whitespace
+   info - The file name 'verfiy_OPT_NewAccount.dart' isn't a lower_case_with_underscores identifier - lib\core\consts\pages\verfiy_OPT_NewAccount.dart:1:1 - file_names
+warning - Unused import: 'package:bobo/features/auth/reset_password/pages/reset_password_screen.dart' - lib\core\consts\pages\verfiy_OPT_NewAccount.dart:6:8 - unused_import
+   info - The file name 'verfieOPTpage.dart' isn't a lower_case_with_underscores identifier - lib\features\auth\forgetpassword\pages\verfieOPTpage.dart:1:1 - file_names
+warning - Unused import: 'package:bobo/features/auth/forgetpassword/pages/verfieOPTpage.dart' - lib\features\auth\login\pages\login_page_screen.dart:7:8 - unused_import
+   info - Don't use 'BuildContext's across async gaps - lib\features\auth\login\pages\login_page_screen.dart:53:38 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\features\auth\login\pages\login_page_screen.dart:56:9 - use_build_context_synchronously
+warning - A value for optional parameter 'key' isn't ever given - lib\features\auth\login\pages\login_page_screen.dart:162:29 - unused_element_parameter
+   info - The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' - lib\features\home\pages\home_page_screen.dart:1:8 - unnecessary_import
+warning - Unused import: 'package:bobo/core/consts/theme/colors.dart' - lib\features\home\pages\home_page_screen.dart:3:8 - unused_import
+   info - Constructors in '@immutable' classes should be declared as 'const' - lib\features\profile\widgets\phone_form.dart:7:3 - prefer_const_constructors_in_immutables
+
+11 issues found. (ran in 5.1s)

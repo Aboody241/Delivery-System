@@ -1,0 +1,70 @@
+Running Gradle task 'assembleDebug'...                          
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:93:7: Error: Expected a class member, but got 'else'.
+    } else if (Platform.isWindows) {
+      ^^^^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:93:12: Error: Expected a class member, but got 'if'.
+    } else if (Platform.isWindows) {
+           ^^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:93:15: Error: Expected an identifier, but got '('.
+Try inserting an identifier before '('.
+    } else if (Platform.isWindows) {
+              ^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:93:34: Error: Expected an identifier, but got ')'.
+Try inserting an identifier before ')'.
+    } else if (Platform.isWindows) {
+                                 ^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:100:7: Error: Expected a class member, but got 'else'.
+    } else if (Platform.isLinux) {
+      ^^^^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:100:12: Error: Expected a class member, but got 'if'.
+    } else if (Platform.isLinux) {
+           ^^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:100:15: Error: Expected an identifier, but got '('.
+Try inserting an identifier before '('.
+    } else if (Platform.isLinux) {
+              ^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:100:32: Error: Expected an identifier, but got ')'.
+Try inserting an identifier before ')'.
+    } else if (Platform.isLinux) {
+                               ^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:108:5: Error: Expected a class member, but got 'return'.
+    return DynamicLibrary.process();
+    ^^^^^^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:108:12: Error: The name of a constructor must match the name of the enclosing class.
+    return DynamicLibrary.process();
+           ^^^^^^^^^^^^^^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:111:3: Error: Can't have modifier 'static' here.
+Try removing 'static'.
+  static DynamicLibrary _openAndroidDynamicLibraryWithFallback() {
+  ^^^^^^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:128:1: Error: Expected a declaration, but got '}'.
+}
+^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:93:16: Error: 'Platform.isWindows' can't be used as a type because 'Platform' doesn't refer to an import prefix.
+    } else if (Platform.isWindows) {
+               ^^^^^^^^^^^^^^^^^^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:100:16: Error: 'Platform.isLinux' can't be used as a type because 'Platform' doesn't refer to an import prefix.
+    } else if (Platform.isLinux) {
+               ^^^^^^^^^^^^^^^^
+../../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/rive_native-0.1.4/lib/src/ffi/dynamic_library_helper.dart:34:25: Error: A non-null value must be returned since the return type 'DynamicLibrary' doesn't allow null.
+ - 'DynamicLibrary' is from 'dart:ffi'.
+  static DynamicLibrary open() {
+                        ^
+Target kernel_snapshot_program failed: Exception
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileFlutterBuildDebug'.
+> Process 'command 'C:\src\flutter\bin\flutter.bat'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 5s
+Running Gradle task 'assembleDebug'...                              6.2s
+Gradle task assembleDebug failed with exit code 1
