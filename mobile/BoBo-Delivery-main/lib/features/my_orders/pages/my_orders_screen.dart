@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:bobo/core/consts/theme/colors.dart';
 import 'package:bobo/core/consts/theme/fonts.dart';
 import 'package:bobo/core/consts/widgets/custom_appbar.dart';
@@ -21,10 +22,22 @@ class MyOrdersScreen extends StatefulWidget {
 }
 
 class _MyOrdersScreenState extends State<MyOrdersScreen> {
+  Timer? _timer;
+
   @override
   void initState() {
     super.initState();
     _loadOrders();
+    // Setup a periodic timer to check for order updates every 3 seconds
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      _loadOrders();
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   Future<void> _loadOrders() async {
