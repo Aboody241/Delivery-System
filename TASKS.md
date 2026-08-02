@@ -125,10 +125,10 @@ This file tracks the development progress of the project.
 
 ## Setup
 
-- [ ] Configure Project
-- [ ] Dio
-- [ ] Bloc
-- [ ] Routing
+- [x] Configure Project
+- [x] Dio
+- [x] Bloc
+- [x] Routing
 
 ---
 
