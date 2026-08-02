@@ -114,4 +114,19 @@ class CategoryController extends ApiController
 
         return $this->successResponse(null, 'Category deleted successfully');
     }
+
+    /**
+     * Display a listing of all categories across all restaurants.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function all(): JsonResponse
+    {
+        $categories = $this->categoryService->getAll();
+
+        return $this->successResponse(
+            CategoryResource::collection($categories),
+            'All categories retrieved successfully'
+        );
+    }
 }

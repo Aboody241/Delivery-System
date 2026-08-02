@@ -18,6 +18,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/restaurants/{id}', [RestaurantController::class, 'show']);
 
     // Public category routes
+    Route::get('/categories', [CategoryController::class, 'all']);
     Route::get('/restaurants/{restaurant}/categories', [CategoryController::class, 'index']);
 
     // Public product routes

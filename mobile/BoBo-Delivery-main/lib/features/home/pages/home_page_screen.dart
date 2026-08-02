@@ -1,8 +1,9 @@
 import 'package:bobo/core/consts/widgets/custom_forms.dart';
 import 'package:bobo/features/home/widgets/category_cards.dart';
 import 'package:bobo/features/home/widgets/home_appbar.dart';
-import 'package:bobo/features/home/widgets/home_products_list.dart';
+import 'package:bobo/features/home/widgets/home_restaurants_list.dart';
 import 'package:bobo/features/home/widgets/home_slider_banner.dart';
+import 'package:bobo/core/network/dio_client.dart';
 import 'package:flutter/material.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -14,13 +15,39 @@ class HomePageScreen extends StatefulWidget {
 
 class _HomePageScreenState extends State<HomePageScreen> {
   TextEditingController searchController = TextEditingController();
-  final GlobalKey<HomeProductsListState> _productsListKey =
-      GlobalKey<HomeProductsListState>();
+  final GlobalKey<HomeRestaurantsListState> _restaurantsListKey =
+      GlobalKey<HomeRestaurantsListState>();
 
-  // Example categories
-  final List<String> categoryNames = ['Offers', 'Burger', 'Pizza', 'Donut'];
+  List<String> categoryNames = ['All'];
+  int selectedCategoryIndex = 0;
 
-  int selectedCategoryIndex = 0; // افتراضياً أول عنصر مختار
+  @override
+  void initState() {
+    super.initState();
+    _loadCategories();
+  }
+
+  Future<void> _loadCategories() async {
+    try {
+      final dio = DioClient().dio;
+      final response = await dio.get('/categories');
+      final responseData = response.data;
+      if (responseData['status'] == 'success') {
+        final List dataList = responseData['data'] ?? [];
+        final List<String> names = dataList
+            .map((json) => json['name']?.toString() ?? '')
+            .where((name) => name.isNotEmpty)
+            .toList();
+        if (names.isNotEmpty) {
+          if (mounted) {
+            setState(() {
+              categoryNames = names;
+            });
+          }
+        }
+      }
+    } catch (_) {}
+  }
 
   @override
   void dispose() {
@@ -41,7 +68,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 13),
           child: RefreshIndicator(
             onRefresh: () async {
-              await _productsListKey.currentState?.refreshProducts();
+              await _restaurantsListKey.currentState?.loadRestaurants();
             },
             child: CustomScrollView(
               slivers: [
@@ -80,7 +107,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 ),
                 const SliverToBoxAdapter(child: HomeSliderBanner()),
 
-                HomeProductsList(key: _productsListKey),
+                HomeRestaurantsList(key: _restaurantsListKey),
               ],
             ),
           ),

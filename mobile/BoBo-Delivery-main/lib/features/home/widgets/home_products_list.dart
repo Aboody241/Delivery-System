@@ -57,6 +57,7 @@ class HomeProductsListState extends State<HomeProductsList> {
               rate: 0.0,
               disc: 'no Description',
               id: '0',
+              categoryId: 0,
             ),
           );
         } else if (state is ProductLoaded && state.products.isEmpty) {

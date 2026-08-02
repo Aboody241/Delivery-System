@@ -19,6 +19,16 @@ class CategoryService
     }
 
     /**
+     * Get all categories.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection<int, \App\Models\Category>
+     */
+    public function getAll(): Collection
+    {
+        return Category::all();
+    }
+
+    /**
      * Get a single category by ID.
      *
      * @param  int  $id
