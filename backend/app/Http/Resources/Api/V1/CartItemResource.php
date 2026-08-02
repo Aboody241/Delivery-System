@@ -22,6 +22,7 @@ class CartItemResource extends JsonResource
             'id' => $this->id,
             'product_id' => $this->product_id,
             'product_name' => $product?->name,
+            'product_image_url' => $product?->image_url,
             'price' => $price,
             'quantity' => $quantity,
             'subtotal' => round($price * $quantity, 2),

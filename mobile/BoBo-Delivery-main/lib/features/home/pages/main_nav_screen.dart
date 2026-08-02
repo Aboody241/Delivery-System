@@ -3,7 +3,9 @@ import 'package:bobo/features/discover_page/pages/discover_screen.dart';
 import 'package:bobo/features/favorate/pages/favorate_screen.dart';
 import 'package:bobo/features/home/pages/home_page_screen.dart';
 import 'package:bobo/features/profile/pages/user_profile.dart';
+import 'package:bobo/controller/cart/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class MainNavScreen extends StatefulWidget {
@@ -20,6 +22,7 @@ class _MainNavScreenState extends State<MainNavScreen> {
   void initState() {
     super.initState();
     _controller = PersistentTabController(initialIndex: 0);
+    context.read<CartCubit>().fetchCart();
   }
 
   @override

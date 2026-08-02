@@ -15,11 +15,11 @@ class OrderItem {
 
   factory OrderItem.fromJson(Map<String, dynamic> json) {
     return OrderItem(
-      productId: json['productId'] ?? '',
-      name: json['name'] ?? '',
+      productId: json['productId'] ?? json['product_id']?.toString() ?? '',
+      name: json['name'] ?? json['product_name'] ?? '',
       price: json['price']?.toString() ?? '0',
       quantity: json['quantaty']?.toString() ?? json['quantity']?.toString() ?? '1',
-      imageUrl: json['imageUrl'] ?? 'assets/products/o_pizza.png',
+      imageUrl: json['imageUrl'] ?? json['product_image_url'] ?? 'assets/products/o_pizza.png',
     );
   }
 
@@ -60,15 +60,17 @@ class OrderModel {
       parsedDate = DateTime.tryParse(json['craateAt']) ?? DateTime.now();
     } else if (json['createdAt'] is String) {
       parsedDate = DateTime.tryParse(json['createdAt']) ?? DateTime.now();
+    } else if (json['created_at'] is String) {
+      parsedDate = DateTime.tryParse(json['created_at']) ?? DateTime.now();
     } else {
       parsedDate = DateTime.now();
     }
 
     return OrderModel(
-      orderId: json['orderId'] ?? documentId,
-      userId: json['userId'] ?? '',
+      orderId: json['id']?.toString() ?? json['orderId'] ?? documentId,
+      userId: json['user_id']?.toString() ?? json['userId'] ?? '',
       items: parsedItems,
-      total: json['total']?.toString() ?? '0',
+      total: json['total_amount']?.toString() ?? json['total']?.toString() ?? '0',
       status: json['status'] ?? 'pending',
       createdAt: parsedDate,
     );

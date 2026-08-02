@@ -1,33 +1,45 @@
 import 'package:bobo/controller/order/models/order_model.dart';
+import 'package:bobo/core/network/dio_client.dart';
+import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OrderRepository {
+  final Dio _dio = DioClient().dio;
+
   OrderRepository();
 
   Future<void> placeOrder(OrderModel order) async {
-    // Mock order placement
-    await Future.delayed(const Duration(milliseconds: 500));
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final address = prefs.getString('user_address') ?? 'Default Customer Address';
+
+      final response = await _dio.post('/orders', data: {
+        'delivery_address': address,
+        'notes': 'Order placed via Bobo mobile application.',
+      });
+
+      final responseData = response.data;
+      if (responseData['status'] != 'success') {
+        throw responseData['message'] ?? 'Failed to place order';
+      }
+    } on DioException catch (e) {
+      throw e.response?.data?['message'] ?? e.message ?? 'Connection error';
+    }
   }
 
   Future<List<OrderModel>> getUserOrders(String userId) async {
-    // Return a mock list of user orders
-    await Future.delayed(const Duration(milliseconds: 500));
-    return [
-      OrderModel(
-        orderId: 'order_1',
-        userId: userId,
-        total: '20.98',
-        status: 'pending',
-        createdAt: DateTime.now().subtract(const Duration(hours: 2)),
-        items: [
-          OrderItem(
-            productId: '1',
-            name: 'Zinger Burger',
-            price: '7.99',
-            quantity: '2',
-            imageUrl: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500',
-          ),
-        ],
-      ),
-    ];
+    try {
+      final response = await _dio.get('/orders');
+      final responseData = response.data;
+
+      if (responseData['status'] == 'success') {
+        final List dataList = responseData['data'] ?? [];
+        return dataList.map((json) => OrderModel.fromJson(json, '')).toList();
+      } else {
+        throw responseData['message'] ?? 'Failed to load orders';
+      }
+    } on DioException catch (e) {
+      throw e.response?.data?['message'] ?? e.message ?? 'Connection error';
+    }
   }
 }

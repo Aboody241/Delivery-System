@@ -150,17 +150,17 @@ This file tracks the development progress of the project.
 
 ## Cart
 
-- [ ] View Cart
-- [ ] Update Quantity
-- [ ] Checkout
+- [x] View Cart
+- [x] Update Quantity
+- [x] Checkout
 
 ---
 
 ## Orders
 
-- [ ] Order History
-- [ ] Order Details
-- [ ] Track Order
+- [x] Order History
+- [x] Order Details
+- [x] Track Order
 
 ---
 
