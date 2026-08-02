@@ -117,7 +117,7 @@ This file tracks the development progress of the project.
 - [x] Categories
 - [x] Products
 - [x] Orders
-- [ ] Users
+- [x] Users
 
 ---
 
