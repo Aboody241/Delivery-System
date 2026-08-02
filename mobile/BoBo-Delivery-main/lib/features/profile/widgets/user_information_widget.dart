@@ -48,7 +48,7 @@ class UserInformationWidget extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(1000),
-                      child: imagePath != null
+                      child: (imagePath != null && File(imagePath).existsSync())
                           ? Image.file(
                               File(imagePath),
                               fit: BoxFit.cover,
