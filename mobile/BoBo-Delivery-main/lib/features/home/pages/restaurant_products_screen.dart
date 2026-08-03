@@ -132,7 +132,7 @@ class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
                     children: [
                       const Text('⚠️', style: TextStyle(fontSize: 30)),
                       const Gap(10),
-                      Text('Failed to load menu: $_errorMessage', textAlign: TextAlign.center),
+                      Text('Failed to load menu, Sorry Try again later..', textAlign: TextAlign.center),
                       const Gap(15),
                       ElevatedButton(
                         onPressed: _loadData,
