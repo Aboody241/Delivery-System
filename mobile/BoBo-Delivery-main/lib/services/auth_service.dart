@@ -25,6 +25,7 @@ class AuthService {
         await prefs.setString('user_name', user['name'] ?? '');
         await prefs.setString('user_phone', user['phone'] ?? '');
         await prefs.setString('user_address', user['address'] ?? '');
+        await prefs.setString('user_image_url', user['image_url'] ?? '');
 
         return {
           'uid': user['id'].toString(),
@@ -64,6 +65,7 @@ class AuthService {
         await prefs.setString('user_name', user['name'] ?? '');
         await prefs.setString('user_phone', user['phone'] ?? '');
         await prefs.setString('user_address', user['address'] ?? '');
+        await prefs.setString('user_image_url', user['image_url'] ?? '');
 
         return {
           'uid': user['id'].toString(),
@@ -91,6 +93,7 @@ class AuthService {
       await prefs.remove('user_name');
       await prefs.remove('user_phone');
       await prefs.remove('user_address');
+      await prefs.remove('user_image_url');
     }
   }
 
@@ -109,6 +112,11 @@ class AuthService {
     return prefs.getString('user_email');
   }
 
+  Future<String?> getCurrentUserImageUrl() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('user_image_url');
+  }
+
   Future<Map<String, dynamic>?> fetchProfile() async {
     try {
       final response = await _dio.get('/me');
@@ -122,6 +130,7 @@ class AuthService {
         await prefs.setString('user_name', user['name'] ?? '');
         await prefs.setString('user_phone', user['phone'] ?? '');
         await prefs.setString('user_address', user['address'] ?? '');
+        await prefs.setString('user_image_url', user['image_url'] ?? '');
         return user;
       }
       return null;
@@ -149,6 +158,7 @@ class AuthService {
         await prefs.setString('user_name', user['name'] ?? '');
         await prefs.setString('user_phone', user['phone'] ?? '');
         await prefs.setString('user_address', user['address'] ?? '');
+        await prefs.setString('user_image_url', user['image_url'] ?? '');
         return user;
       } else {
         throw responseData['message'] ?? 'Profile update failed';

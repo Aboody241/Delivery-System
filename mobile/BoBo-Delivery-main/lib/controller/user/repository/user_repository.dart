@@ -24,6 +24,7 @@ class UserRepository {
       phoneNumber: '',
       birthday: '',
       address: '',
+      imageUrl: '',
     );
   }
 

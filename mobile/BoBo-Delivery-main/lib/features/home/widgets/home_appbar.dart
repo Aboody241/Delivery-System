@@ -27,9 +27,11 @@ class HomeAppbar extends StatelessWidget {
 
           String userName = 'User';
           String? imagePath;
+          String? imageUrl;
           if (state is UserLoaded) {
             userName = state.user.name;
             imagePath = state.localImagePath;
+            imageUrl = state.user.imageUrl;
           }
 
           return Row(
@@ -55,8 +57,14 @@ class HomeAppbar extends StatelessWidget {
                 child: CircleAvatar(
                   maxRadius: 25,
                   backgroundColor: Colors.blueAccent,
-                  backgroundImage: imagePath != null ? FileImage(File(imagePath)) : null,
-                  child: imagePath == null ? const Icon(Icons.person, color: Colors.white, size: 28) : null,
+                  backgroundImage: imagePath != null
+                      ? FileImage(File(imagePath))
+                      : (imageUrl != null && imageUrl.isNotEmpty)
+                          ? NetworkImage(imageUrl)
+                          : null,
+                  child: (imagePath == null && (imageUrl == null || imageUrl.isEmpty))
+                      ? const Icon(Icons.person, color: Colors.white, size: 28)
+                      : null,
                 ),
               ),
             ],

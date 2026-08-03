@@ -110,6 +110,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                             phoneNumber: phoneController.value.nsn,
                             birthday: birthController.text.trim(),
                             address: addressController.text.trim(),
+                            imageUrl: '',
                           );
                           
                           await context.read<UserCubit>().saveUser(userModel);

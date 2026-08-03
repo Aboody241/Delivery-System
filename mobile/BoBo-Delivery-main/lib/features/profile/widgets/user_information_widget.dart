@@ -25,11 +25,13 @@ class UserInformationWidget extends StatelessWidget {
         String userName = 'User';
         String userEmail = 'user@example.com';
         String? imagePath;
+        String? imageUrl;
         
         if (state is UserLoaded) {
           userName = state.user.name;
           userEmail = state.user.email;
           imagePath = state.localImagePath;
+          imageUrl = state.user.imageUrl;
         }
 
         return Container(
@@ -55,12 +57,25 @@ class UserInformationWidget extends StatelessWidget {
                               width: 100,
                               height: 100,
                             )
-                          : Image.asset(
-                              'assets/consts/avataar.jpeg',
-                              fit: BoxFit.cover,
-                              width: 100,
-                              height: 100,
-                            ),
+                          : (imageUrl != null && imageUrl.isNotEmpty)
+                              ? Image.network(
+                                  imageUrl,
+                                  fit: BoxFit.cover,
+                                  width: 100,
+                                  height: 100,
+                                  errorBuilder: (context, error, stackTrace) => Image.asset(
+                                    'assets/consts/avataar.jpeg',
+                                    fit: BoxFit.cover,
+                                    width: 100,
+                                    height: 100,
+                                  ),
+                                )
+                              : Image.asset(
+                                  'assets/consts/avataar.jpeg',
+                                  fit: BoxFit.cover,
+                                  width: 100,
+                                  height: 100,
+                                ),
                     ),
                     Positioned(
                       bottom: 0,

@@ -6,6 +6,7 @@ class UserModel {
   final String phoneNumber;
   final String birthday;
   final String address;
+  final String imageUrl;
 
   UserModel({
     required this.uid,
@@ -15,6 +16,7 @@ class UserModel {
     required this.phoneNumber,
     required this.birthday,
     required this.address,
+    required this.imageUrl,
   });
 
   factory UserModel.fromFirestore(Map<String, dynamic> data, String uid) {
@@ -54,6 +56,7 @@ class UserModel {
       phoneNumber: pNum,
       birthday: data['birthday'] ?? '',
       address: data['address'] ?? '',
+      imageUrl: data['image_url'] ?? '',
     );
   }
 
@@ -68,6 +71,7 @@ class UserModel {
       'phone': phoneStr,
       'birthday': birthday,
       'address': address,
+      'image_url': imageUrl,
     };
   }
 
@@ -78,6 +82,7 @@ class UserModel {
     String? phoneNumber,
     String? birthday,
     String? address,
+    String? imageUrl,
   }) {
     return UserModel(
       uid: uid,
@@ -87,6 +92,7 @@ class UserModel {
       phoneNumber: phoneNumber ?? this.phoneNumber,
       birthday: birthday ?? this.birthday,
       address: address ?? this.address,
+      imageUrl: imageUrl ?? this.imageUrl,
     );
   }
 }

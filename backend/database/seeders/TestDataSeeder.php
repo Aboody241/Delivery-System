@@ -36,6 +36,7 @@ class TestDataSeeder extends Seeder
                 'email' => 'admin@admin.com',
                 'password' => Hash::make('password'),
                 'role' => 'admin',
+                'image_url' => 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
             ]
         );
 
@@ -49,6 +50,7 @@ class TestDataSeeder extends Seeder
                 'role' => 'customer',
                 'phone' => '+1 (555) 012-3456',
                 'address' => '456 Elm Street, Suite 4, Brooklyn, NY',
+                'image_url' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
             ]
         );
 
