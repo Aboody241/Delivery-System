@@ -10,6 +10,7 @@ import { CategoriesPage } from './features/categories/CategoriesPage';
 import { ProductsPage } from './features/products/ProductsPage';
 import { OrdersPage } from './features/orders/OrdersPage';
 import { UsersPage } from './features/users/UsersPage';
+import { StatisticsPage } from './features/statistics/StatisticsPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,6 +36,7 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route element={<DashboardLayout />}>
                 <Route path="/" element={<DashboardPage />} />
+                <Route path="/statistics" element={<StatisticsPage />} />
                 <Route path="/restaurants" element={<RestaurantsPage />} />
                 <Route path="/categories" element={<CategoriesPage />} />
                 <Route path="/products" element={<ProductsPage />} />
