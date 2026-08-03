@@ -220,7 +220,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                   ),
                 ),
               ),
-            ),
+            
             Expanded(
               child: TabBarView(
                 children: [
