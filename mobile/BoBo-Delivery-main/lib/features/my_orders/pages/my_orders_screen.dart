@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:bobo/core/consts/theme/colors.dart';
 import 'package:bobo/core/consts/theme/fonts.dart';
 import 'package:bobo/core/consts/widgets/custom_appbar.dart';
@@ -22,22 +21,14 @@ class MyOrdersScreen extends StatefulWidget {
 }
 
 class _MyOrdersScreenState extends State<MyOrdersScreen> {
-  Timer? _timer;
-
   @override
   void initState() {
     super.initState();
     _loadOrders();
-    // Setup a periodic timer to check for order updates every 3 seconds
-    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-      _loadOrders();
-    });
   }
 
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
+  Future<void> _refreshOrders() async {
+    await _loadOrders();
   }
 
   Future<void> _loadOrders() async {
@@ -153,51 +144,51 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
           ),
         ),
         body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              child: Container(
-                height: 55,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF3F5F1),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: TabBar(
-                  padding: const EdgeInsets.all(4),
-                  indicator: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
-                        blurRadius: 4,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                child: Container(
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF3F5F1),
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  dividerColor: Colors.transparent,
-                  labelColor: const Color(0xFF2A2A2A),
-                  unselectedLabelColor: const Color(0xFF7F7F7F),
-                  labelStyle: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'Poppins',
-                  ),
-                  unselectedLabelStyle: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Poppins',
-                  ),
-                  tabs: [
-                    Tab(
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          const Text('Current'),
-                          Positioned(
-                            top: -2,
-                            right: -8,
+                  child: TabBar(
+                    padding: const EdgeInsets.all(4),
+                    indicator: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.05),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    dividerColor: Colors.transparent,
+                    labelColor: const Color(0xFF2A2A2A),
+                    unselectedLabelColor: const Color(0xFF7F7F7F),
+                    labelStyle: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'Poppins',
+                    ),
+                    unselectedLabelStyle: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'Poppins',
+                    ),
+                    tabs: [
+                      Tab(
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            const Text('Current'),
+                            Positioned(
+                              top: -2,
+                              right: -8,
                             child: Container(
                               width: 7,
                               height: 7,
@@ -225,8 +216,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
             ),
           ],
         ),
-      ),
-    );
+    ));
   }
 
   Widget _buildCurrentOrdersTab(BuildContext context) {
@@ -239,38 +229,53 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
         } else if (state is OrderLoaded) {
           final currentOrders = state.orders.where((o) =>
             o.status.toLowerCase() != 'completed' &&
-            o.status.toLowerCase() != 'cancelled'
+            o.status.toLowerCase() != 'cancelled' &&
+            o.status.toLowerCase() != 'delivered'
           ).toList();
 
           if (currentOrders.isEmpty) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/consts/notfound.png', width: 180, height: 180),
-                    const Gap(30),
-                    Text(
-                      'No active orders right now',
-                      style: AppTextStyle.poppins20Bold,
-                      textAlign: TextAlign.center,
-                    ),
-                    const Gap(10),
-                    Text(
-                      'You can discover more delicious dishes and order them easily!',
-                      style: AppTextStyle.poppins14.copyWith(
-                        color: AppColors.darkGrey400,
+            return RefreshIndicator(
+              onRefresh: _refreshOrders,
+              child: ListView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/consts/notfound.png', width: 180, height: 180),
+                            const Gap(30),
+                            Text(
+                              'No active orders right now',
+                              style: AppTextStyle.poppins20Bold,
+                              textAlign: TextAlign.center,
+                            ),
+                            const Gap(10),
+                            Text(
+                              'You can discover more delicious dishes and order them easily!',
+                              style: AppTextStyle.poppins14.copyWith(
+                                color: AppColors.darkGrey400,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
                       ),
-                      textAlign: TextAlign.center,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             );
           }
 
-          return _buildOrdersList(currentOrders, isActive: true);
+          return RefreshIndicator(
+            onRefresh: _refreshOrders,
+            child: _buildOrdersList(currentOrders, isActive: true),
+          );
         }
         return const SizedBox.shrink();
       },
@@ -287,30 +292,45 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
         } else if (state is OrderLoaded) {
           final pastOrders = state.orders.where((o) =>
             o.status.toLowerCase() == 'completed' ||
-            o.status.toLowerCase() == 'cancelled'
+            o.status.toLowerCase() == 'cancelled' ||
+            o.status.toLowerCase() == 'delivered'
           ).toList();
 
           if (pastOrders.isEmpty) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/consts/notfound.png', width: 180, height: 180),
-                    const Gap(30),
-                    Text(
-                      'No previous orders found',
-                      style: AppTextStyle.poppins20Bold,
-                      textAlign: TextAlign.center,
+            return RefreshIndicator(
+              onRefresh: _refreshOrders,
+              child: ListView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/consts/notfound.png', width: 180, height: 180),
+                            const Gap(30),
+                            Text(
+                              'No previous orders found',
+                              style: AppTextStyle.poppins20Bold,
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             );
           }
 
-          return _buildOrdersList(pastOrders, isActive: false);
+          return RefreshIndicator(
+            onRefresh: _refreshOrders,
+            child: _buildOrdersList(pastOrders, isActive: false),
+          );
         }
         return const SizedBox.shrink();
       },
@@ -319,6 +339,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
 
   Widget _buildOrdersList(List<OrderModel> orders, {required bool isActive}) {
     return ListView.builder(
+      physics: const AlwaysScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       itemCount: orders.length,
       itemBuilder: (context, index) {
