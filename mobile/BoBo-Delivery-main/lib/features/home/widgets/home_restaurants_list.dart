@@ -1,91 +1,26 @@
 import 'package:bobo/core/consts/routes/routes.dart';
 import 'package:bobo/core/consts/theme/colors.dart';
 import 'package:bobo/core/consts/theme/fonts.dart';
-import 'package:bobo/features/home/models/restaurant_model.dart';
-import 'package:bobo/core/network/dio_client.dart';
+import 'package:bobo/features/home/data/models/restaurant_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class HomeRestaurantsList extends StatefulWidget {
-  const HomeRestaurantsList({super.key});
+class HomeRestaurantsList extends StatelessWidget {
+  final List<Restaurant> restaurants;
+  final bool isLoading;
 
-  @override
-  State<HomeRestaurantsList> createState() => HomeRestaurantsListState();
-}
-
-class HomeRestaurantsListState extends State<HomeRestaurantsList> {
-  List<Restaurant> _restaurants = [];
-  bool _isLoading = true;
-  String? _errorMessage;
-
-  @override
-  void initState() {
-    super.initState();
-    loadRestaurants();
-  }
-
-  Future<void> loadRestaurants() async {
-    if (!mounted) return;
-    setState(() {
-      _isLoading = true;
-      _errorMessage = null;
-    });
-
-    try {
-      final dio = DioClient().dio;
-      final response = await dio.get('/restaurants');
-      final responseData = response.data;
-
-      if (responseData['status'] == 'success') {
-        final List dataList = responseData['data'] ?? [];
-        if (mounted) {
-          setState(() {
-            _restaurants = dataList.map((json) => Restaurant.fromJson(json)).toList();
-            _isLoading = false;
-          });
-        }
-      } else {
-        throw responseData['message'] ?? 'Failed to load restaurants';
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _errorMessage = e.toString();
-          _isLoading = false;
-        });
-      }
-    }
-  }
+  const HomeRestaurantsList({
+    super.key,
+    required this.restaurants,
+    required this.isLoading,
+  });
 
   @override
   Widget build(BuildContext context) {
-    if (_errorMessage != null) {
-      return SliverToBoxAdapter(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 40),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('⚠️', style: TextStyle(fontSize: 30)),
-                const Gap(10),
-                Text('Failed to load restaurants! ,Please Try Agian Later', textAlign: TextAlign.center),
-                const Gap(15),
-                ElevatedButton(
-                  onPressed: loadRestaurants,
-                  child: const Text('Try Again'),
-                )
-              ],
-            ),
-          ),
-        ),
-      );
-    }
-
     final List<Restaurant> items;
-    if (_isLoading) {
+    if (isLoading) {
       items = List.generate(
         4,
         (index) => Restaurant(
@@ -98,7 +33,7 @@ class HomeRestaurantsListState extends State<HomeRestaurantsList> {
           isActive: true,
         ),
       );
-    } else if (_restaurants.isEmpty) {
+    } else if (restaurants.isEmpty) {
       return const SliverToBoxAdapter(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 40),
@@ -107,28 +42,33 @@ class HomeRestaurantsListState extends State<HomeRestaurantsList> {
               children: [
                 Text('🏪', style: TextStyle(fontSize: 40)),
                 Gap(10),
-                Text('No active restaurants found.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                Text(
+                  'No active restaurants found.',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
               ],
             ),
           ),
         ),
       );
     } else {
-      items = _restaurants;
+      items = restaurants;
     }
 
     return Skeletonizer.sliver(
-      enabled: _isLoading,
+      enabled: isLoading,
       child: SliverGrid(
         delegate: SliverChildBuilderDelegate((context, index) {
           final rest = items[index];
           return GestureDetector(
-            onTap: () {
-              Navigator.of(context, rootNavigator: true).pushNamed(
-                AppRoutes.restaurantProductsScreen,
-                arguments: rest,
-              );
-            },
+            onTap: isLoading
+                ? null
+                : () {
+                    Navigator.of(context, rootNavigator: true).pushNamed(
+                      AppRoutes.restaurantProductsScreen,
+                      arguments: rest,
+                    );
+                  },
             child: RepaintBoundary(
               child: Container(
                 decoration: BoxDecoration(
@@ -156,7 +96,7 @@ class HomeRestaurantsListState extends State<HomeRestaurantsList> {
                             errorWidget: (context, url, error) => const Icon(Icons.store),
                           ),
                         ),
-                        if (rest.isActive)
+                        if (rest.isActive && !isLoading)
                           Positioned(
                             top: 8,
                             right: 8,
@@ -168,7 +108,11 @@ class HomeRestaurantsListState extends State<HomeRestaurantsList> {
                               ),
                               child: const Text(
                                 'Open',
-                                style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),

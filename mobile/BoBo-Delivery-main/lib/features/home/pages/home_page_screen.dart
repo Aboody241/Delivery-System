@@ -3,8 +3,10 @@ import 'package:bobo/features/home/widgets/category_cards.dart';
 import 'package:bobo/features/home/widgets/home_appbar.dart';
 import 'package:bobo/features/home/widgets/home_restaurants_list.dart';
 import 'package:bobo/features/home/widgets/home_slider_banner.dart';
-import 'package:bobo/core/network/dio_client.dart';
+import 'package:bobo/features/home/presentation/cubit/home_cubit.dart';
+import 'package:bobo/features/home/presentation/cubit/home_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({super.key});
@@ -15,39 +17,7 @@ class HomePageScreen extends StatefulWidget {
 
 class _HomePageScreenState extends State<HomePageScreen> {
   TextEditingController searchController = TextEditingController();
-  final GlobalKey<HomeRestaurantsListState> _restaurantsListKey =
-      GlobalKey<HomeRestaurantsListState>();
-
-  List<String> categoryNames = ['All'];
   int selectedCategoryIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadCategories();
-  }
-
-  Future<void> _loadCategories() async {
-    try {
-      final dio = DioClient().dio;
-      final response = await dio.get('/categories');
-      final responseData = response.data;
-      if (responseData['status'] == 'success') {
-        final List dataList = responseData['data'] ?? [];
-        final List<String> names = dataList
-            .map((json) => json['name']?.toString() ?? '')
-            .where((name) => name.isNotEmpty)
-            .toList();
-        if (names.isNotEmpty) {
-          if (mounted) {
-            setState(() {
-              categoryNames = names;
-            });
-          }
-        }
-      }
-    } catch (_) {}
-  }
 
   @override
   void dispose() {
@@ -66,50 +36,90 @@ class _HomePageScreenState extends State<HomePageScreen> {
         bottom: false,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 13),
-          child: RefreshIndicator(
-            onRefresh: () async {
-              await _restaurantsListKey.currentState?.loadRestaurants();
-            },
-            child: CustomScrollView(
-              slivers: [
-                SliverPersistentHeader(
-                  floating: true,
-                  delegate: SearchBarDelegate(searchController),
-                ),
-
-                SliverPadding(
-                  padding: const EdgeInsets.only(top: 10),
-                  sliver: SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 50,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: categoryNames.length,
-                        itemBuilder: (context, index) {
-                          bool isSelected = index == selectedCategoryIndex;
-                          return InkWell(
-                            onTap: () {
-                              setState(() {
-                                selectedCategoryIndex = index;
-                              });
-                            },
-                            borderRadius: BorderRadius.circular(12),
-                            child: CategoriesCard(
-                              index: index,
-                              categoryName: categoryNames[index],
-                              isSelected: isSelected,
-                            ),
-                          );
+          child: BlocBuilder<HomeCubit, HomeState>(
+            builder: (context, state) {
+              if (state is HomeInitial) {
+                context.read<HomeCubit>().loadHomeData();
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (state is HomeLoading) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (state is HomeError) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('⚠️', style: TextStyle(fontSize: 30)),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Failed to load data: ${state.message}',
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 15),
+                      ElevatedButton(
+                        onPressed: () {
+                          context.read<HomeCubit>().loadHomeData();
                         },
+                        child: const Text('Try Again'),
+                      ),
+                    ],
+                  ),
+                );
+              }
+
+              final homeLoaded = state as HomeLoaded;
+              final categoryNames = homeLoaded.categories;
+
+              return RefreshIndicator(
+                onRefresh: () async {
+                  await context.read<HomeCubit>().refreshHomeData();
+                },
+                child: CustomScrollView(
+                  slivers: [
+                    SliverPersistentHeader(
+                      floating: true,
+                      delegate: SearchBarDelegate(searchController),
+                    ),
+
+                    SliverPadding(
+                      padding: const EdgeInsets.only(top: 10),
+                      sliver: SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 50,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: categoryNames.length,
+                            itemBuilder: (context, index) {
+                              bool isSelected = index == selectedCategoryIndex;
+                              return InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    selectedCategoryIndex = index;
+                                  });
+                                },
+                                borderRadius: BorderRadius.circular(12),
+                                child: CategoriesCard(
+                                  index: index,
+                                  categoryName: categoryNames[index],
+                                  isSelected: isSelected,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                const SliverToBoxAdapter(child: HomeSliderBanner()),
+                    const SliverToBoxAdapter(child: HomeSliderBanner()),
 
-                HomeRestaurantsList(key: _restaurantsListKey),
-              ],
-            ),
+                    HomeRestaurantsList(
+                      restaurants: homeLoaded.restaurants,
+                      isLoading: false,
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
         ),
       ),

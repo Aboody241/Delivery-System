@@ -1,26 +1,21 @@
-import 'package:bobo/controller/cart/cubit/cart_cubit.dart';
 import 'package:bobo/core/consts/routes/routes.dart';
 import 'package:bobo/core/consts/theme/colors.dart';
 import 'package:bobo/core/consts/theme/fonts.dart';
 import 'package:bobo/core/consts/widgets/custom_appbar.dart';
 import 'package:bobo/core/consts/widgets/custom_buttons.dart';
 import 'package:bobo/core/consts/widgets/custom_forms.dart';
-import 'package:bobo/features/cart/models/cart_class.dart';
-import 'package:bobo/features/home/models/products_model.dart';
-import 'package:bobo/features/home/models/restaurant_model.dart';
-import 'package:bobo/core/network/dio_client.dart';
+import 'package:bobo/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:bobo/features/cart/data/models/cart_class.dart';
+import 'package:bobo/features/home/data/models/products_model.dart';
+import 'package:bobo/features/home/data/models/restaurant_model.dart';
+import 'package:bobo/features/home/data/models/category_model.dart';
+import 'package:bobo/features/home/domain/repositories/home_repository.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
-class RestaurantCategory {
-  final int id;
-  final String name;
-  RestaurantCategory({required this.id, required this.name});
-}
 
 class RestaurantProductsScreen extends StatefulWidget {
   const RestaurantProductsScreen({super.key});
@@ -30,23 +25,23 @@ class RestaurantProductsScreen extends StatefulWidget {
 }
 
 class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
+  final TextEditingController _searchController = TextEditingController();
   late Restaurant _restaurant;
+  List<RestaurantCategory> _categories = [];
   List<Product> _allProducts = [];
   List<Product> _filteredProducts = [];
-  List<RestaurantCategory> _categories = [RestaurantCategory(id: 0, name: 'All')];
-  
+  int _selectedCategoryIndex = 0;
   bool _isLoading = true;
   String? _errorMessage;
-  int _selectedCategoryIndex = 0;
-  final TextEditingController _searchController = TextEditingController();
 
   bool _isInit = true;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (_isInit) {
-      _restaurant = ModalRoute.of(context)!.settings.arguments as Restaurant;
+    final args = ModalRoute.of(context)?.settings.arguments;
+    if (_isInit && args is Restaurant) {
+      _restaurant = args;
       _loadData();
       _isInit = false;
     }
@@ -72,28 +67,18 @@ class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
     });
 
     try {
-      final dio = DioClient().dio;
+      final homeRepository = context.read<HomeRepository>();
 
       // 1. Fetch categories
-      final catResponse = await dio.get('/restaurants/${_restaurant.id}/categories');
-      if (catResponse.data != null && catResponse.data['status'] == 'success') {
-        final List catList = catResponse.data['data'] ?? [];
-        _categories = [
-          RestaurantCategory(id: 0, name: 'All'),
-          ...catList.map((json) => RestaurantCategory(
-                id: json['id'] ?? 0,
-                name: json['name'] ?? '',
-              )),
-        ];
-      }
+      final catList = await homeRepository.getRestaurantCategories(_restaurant.id);
+      _categories = [
+        RestaurantCategory(id: 0, name: 'All'),
+        ...catList,
+      ];
 
       // 2. Fetch products
-      final prodResponse = await dio.get('/restaurants/${_restaurant.id}/products');
-      if (prodResponse.data != null && prodResponse.data['status'] == 'success') {
-        final List prodList = prodResponse.data['data'] ?? [];
-        _allProducts = prodList.map((json) => Product.fromJson(json)).toList();
-        _filteredProducts = _allProducts;
-      }
+      _allProducts = await homeRepository.getRestaurantProducts(_restaurant.id);
+      _filteredProducts = _allProducts;
 
       if (mounted) {
         setState(() {
@@ -260,7 +245,7 @@ class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
                                       cat.name,
                                       style: TextStyle(
                                         color: isSelected
-                                            ? AppColors.darkGreen
+                                            ? AppColors.white
                                             : AppColors.darkGrey300,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
@@ -376,7 +361,7 @@ class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,
                                                   ),
-                                                  const Gap(2),
+                                                  const Gap(6),
                                                   Text(
                                                     food.disc ?? '',
                                                     style: AppTextStyle.poppins12.copyWith(
@@ -386,7 +371,7 @@ class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
                                                     maxLines: 2,
                                                     overflow: TextOverflow.ellipsis,
                                                   ),
-                                                  const Gap(4),
+                                                  const Gap(10),
                                                   Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [

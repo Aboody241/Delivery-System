@@ -1,9 +1,9 @@
-import 'package:bobo/controller/user/cubit/user_cubit.dart';
-import 'package:bobo/features/cart/screen/cart_page.dart';
-import 'package:bobo/features/favorate/pages/favorate_screen.dart';
+import 'package:bobo/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:bobo/features/cart/presentation/pages/cart_page.dart';
+import 'package:bobo/features/favorite/presentation/pages/favorite_screen.dart';
 import 'package:bobo/features/home/pages/home_page_screen.dart';
-import 'package:bobo/features/profile/pages/user_profile.dart';
-import 'package:bobo/controller/cart/cubit/cart_cubit.dart';
+import 'package:bobo/features/profile/presentation/cubit/user_cubit.dart';
+import 'package:bobo/features/profile/presentation/pages/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
@@ -36,7 +36,7 @@ class _MainNavScreenState extends State<MainNavScreen> {
     return [
       const HomePageScreen(),
       const CartPage(),
-      const FavorateScreen(),
+      const FavoriteScreen(),
       const UserProfileScreen(),
     ];
   }

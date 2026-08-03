@@ -1,6 +1,7 @@
-import 'package:bobo/services/auth_service.dart';
 import 'package:bobo/core/consts/routes/routes.dart';
+import 'package:bobo/features/auth/domain/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void _navigateToOnBoarding() {
     Future.delayed(const Duration(seconds: 3), () async {
       if (mounted) {
-        final isLoggedIn = await AuthService().isLoggedIn();
+        final isLoggedIn = await context.read<AuthRepository>().isLoggedIn();
         if (mounted) {
           if (isLoggedIn) {
             Navigator.pushReplacementNamed(context, AppRoutes.mainNav);

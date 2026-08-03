@@ -1,16 +1,16 @@
-import 'package:bobo/controller/favorite/cubit/favorite_cubit.dart';
+import 'package:bobo/features/favorite/presentation/cubit/favorite_cubit.dart';
 import 'package:bobo/core/consts/theme/colors.dart';
 import 'package:bobo/core/consts/theme/fonts.dart';
 import 'package:bobo/core/consts/widgets/custom_buttons.dart';
-import 'package:bobo/features/home/models/products_model.dart';
+import 'package:bobo/features/home/data/models/products_model.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:bobo/controller/cart/cubit/cart_cubit.dart';
-import 'package:bobo/features/cart/models/cart_class.dart';
+import 'package:bobo/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:bobo/features/cart/data/models/cart_class.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 class ProductDetailScreen extends StatefulWidget {

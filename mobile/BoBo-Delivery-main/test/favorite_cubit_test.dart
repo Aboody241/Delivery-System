@@ -1,6 +1,6 @@
+import 'package:bobo/features/favorite/presentation/cubit/favorite_cubit.dart';
+import 'package:bobo/features/home/data/models/products_model.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:bobo/controller/favorite/cubit/favorite_cubit.dart';
-import 'package:bobo/features/home/models/products_model.dart';
 
 void main() {
   group('FavoriteCubit Tests', () {

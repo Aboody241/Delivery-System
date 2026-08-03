@@ -1,13 +1,13 @@
 import 'dart:ui';
 
-import 'package:bobo/controller/cart/cubit/cart_cubit.dart';
+import 'package:bobo/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:bobo/core/consts/routes/routes.dart';
 import 'package:bobo/core/consts/theme/colors.dart';
 import 'package:bobo/core/consts/theme/fonts.dart';
-import 'package:bobo/features/cart/models/cart_class.dart';
-import 'package:bobo/features/home/models/products_model.dart';
-import 'package:bobo/controller/product/cubit/product_cubit.dart';
-import 'package:bobo/controller/product/cubit/product_state.dart';
+import 'package:bobo/features/cart/data/models/cart_class.dart';
+import 'package:bobo/features/home/data/models/products_model.dart';
+import 'package:bobo/features/home/presentation/cubit/product_cubit.dart';
+import 'package:bobo/features/home/presentation/cubit/product_state.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

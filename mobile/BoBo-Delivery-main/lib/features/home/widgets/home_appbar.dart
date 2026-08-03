@@ -1,9 +1,8 @@
 import 'package:bobo/core/consts/routes/routes.dart';
 import 'package:bobo/core/consts/theme/fonts.dart';
-// import 'package:bobo/services/firebase/auth_service.dart';
-import 'package:bobo/controller/user/cubit/user_cubit.dart';
+import 'package:bobo/features/profile/presentation/cubit/user_cubit.dart';
+import 'package:bobo/features/profile/presentation/cubit/user_state.dart';
 import 'dart:io';
-import 'package:bobo/controller/user/cubit/user_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
