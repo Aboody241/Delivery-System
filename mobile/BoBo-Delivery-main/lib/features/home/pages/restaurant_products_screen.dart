@@ -298,7 +298,7 @@ class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
                                 crossAxisCount: 2,
                                 mainAxisSpacing: 12,
                                 crossAxisSpacing: 10,
-                                childAspectRatio: 0.92,
+                                childAspectRatio: 0.78,
                               ),
                             ),
                           )
@@ -376,6 +376,16 @@ class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,
                                                   ),
+                                                  const Gap(2),
+                                                  Text(
+                                                    food.disc ?? '',
+                                                    style: AppTextStyle.poppins12.copyWith(
+                                                      color: AppColors.darkGrey300,
+                                                      fontSize: 11,
+                                                    ),
+                                                    maxLines: 2,
+                                                    overflow: TextOverflow.ellipsis,
+                                                  ),
                                                   const Gap(4),
                                                   Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -437,7 +447,7 @@ class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
                                   crossAxisCount: 2,
                                   mainAxisSpacing: 12,
                                   crossAxisSpacing: 10,
-                                  childAspectRatio: 0.92,
+                                  childAspectRatio: 0.78,
                                 ),
                               ),
                   ],
