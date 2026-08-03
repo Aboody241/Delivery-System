@@ -174,10 +174,10 @@ This file tracks the development progress of the project.
 
 # Phase 5 — Testing
 
-- [ ] Backend Testing
-- [ ] Dashboard Testing
-- [ ] Flutter Testing
-- [ ] Bug Fixes
+- [x] Backend Testing
+- [x] Dashboard Testing
+- [x] Flutter Testing
+- [x] Bug Fixes
 
 ---
 
@@ -206,10 +206,10 @@ This file tracks the development progress of the project.
 
 Documentation: ██████████ 100%
 
-Backend: ░░░░░░░░░░ 0%
+Backend: ██████████ 100%
 
-Dashboard: ░░░░░░░░░░ 0%
+Dashboard: ██████████ 100%
 
-Flutter: ░░░░░░░░░░ 0%
+Flutter: ██████████ 100%
 
-Overall Progress: 5%
+Overall Progress: 85%
