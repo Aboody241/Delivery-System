@@ -53,7 +53,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       const Text('⚠️', style: TextStyle(fontSize: 30)),
                       const SizedBox(height: 10),
                       Text(
-                        'Failed to load data: ${state.message}',
+                        'Failed to load data, Sorry Try again later..',
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 15),
