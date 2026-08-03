@@ -71,7 +71,7 @@ class HomeRestaurantsListState extends State<HomeRestaurantsList> {
               children: [
                 const Text('⚠️', style: TextStyle(fontSize: 30)),
                 const Gap(10),
-                Text('Failed to load restaurants: $_errorMessage', textAlign: TextAlign.center),
+                Text('Failed to load restaurants! ,Please Try Agian Later', textAlign: TextAlign.center),
                 const Gap(15),
                 ElevatedButton(
                   onPressed: loadRestaurants,

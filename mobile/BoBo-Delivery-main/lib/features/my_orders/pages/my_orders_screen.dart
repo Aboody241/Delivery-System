@@ -153,56 +153,71 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                     color: const Color(0xFFF3F5F1),
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  child: TabBar(
-                    padding: const EdgeInsets.all(4),
-                    indicator: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
-                          blurRadius: 4,
-                          offset: const Offset(0, 2),
+                  child: BlocBuilder<OrderCubit, OrderState>(
+                    builder: (context, state) {
+                      bool hasActiveOrders = false;
+                      if (state is OrderLoaded) {
+                        hasActiveOrders = state.orders.any((o) =>
+                          o.status.toLowerCase() != 'completed' &&
+                          o.status.toLowerCase() != 'cancelled' &&
+                          o.status.toLowerCase() != 'delivered'
+                        );
+                      }
+
+                      return TabBar(
+                        padding: const EdgeInsets.all(4),
+                        indicator: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.05),
+                              blurRadius: 4,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    dividerColor: Colors.transparent,
-                    labelColor: const Color(0xFF2A2A2A),
-                    unselectedLabelColor: const Color(0xFF7F7F7F),
-                    labelStyle: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'Poppins',
-                    ),
-                    unselectedLabelStyle: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Poppins',
-                    ),
-                    tabs: [
-                      Tab(
-                        child: Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            const Text('Current'),
-                            Positioned(
-                              top: -2,
-                              right: -8,
-                            child: Container(
-                              width: 7,
-                              height: 7,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFFE25B38),
-                                shape: BoxShape.circle,
-                              ),
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        dividerColor: Colors.transparent,
+                        labelColor: const Color(0xFF2A2A2A),
+                        unselectedLabelColor: const Color(0xFF7F7F7F),
+                        labelStyle: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'Poppins',
+                        ),
+                        unselectedLabelStyle: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'Poppins',
+                        ),
+                        tabs: [
+                          Tab(
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                const Text('Current'),
+                                if (hasActiveOrders)
+                                  Positioned(
+                                    top: -2,
+                                    right: -8,
+                                    child: Container(
+                                      width: 7,
+                                      height: 7,
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xFFE25B38),
+                                        shape: BoxShape.circle,
+                                      ),
+                                    ),
+                                  ),
+                              ],
                             ),
                           ),
+                          const Tab(text: 'Previous'),
                         ],
-                      ),
-                    ),
-                    const Tab(text: 'Previous'),
-                  ],
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
@@ -214,6 +229,14 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                 ],
               ),
             ),
+
+            Text("*Please Don't foget to refresh the page \nto update the order state",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.grey
+            ),
+            ),
+            Gap(8)
           ],
         ),
     ));
