@@ -298,7 +298,7 @@ class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
                                 crossAxisCount: 2,
                                 mainAxisSpacing: 12,
                                 crossAxisSpacing: 10,
-                                childAspectRatio: 0.71,
+                                childAspectRatio: 0.92,
                               ),
                             ),
                           )
@@ -437,7 +437,7 @@ class _RestaurantProductsScreenState extends State<RestaurantProductsScreen> {
                                   crossAxisCount: 2,
                                   mainAxisSpacing: 12,
                                   crossAxisSpacing: 10,
-                                  childAspectRatio: 0.72,
+                                  childAspectRatio: 0.92,
                                 ),
                               ),
                   ],
