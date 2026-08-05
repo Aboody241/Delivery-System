@@ -126,6 +126,15 @@ Responsible for:
 
 The mobile app communicates only with the Laravel API.
 
+### Screenshots
+
+<p align="center">
+  <img src="demos/mobile/Simulator%20Screenshot%20-%20iPhone%2017%20-%202026-08-06%20at%2001.44.15.png" alt="Mobile Screen 1" width="24%" />
+  <img src="demos/mobile/Simulator%20Screenshot%20-%20iPhone%2017%20-%202026-08-06%20at%2001.44.57.png" alt="Mobile Screen 2" width="24%" />
+  <img src="demos/mobile/Simulator%20Screenshot%20-%20iPhone%2017%20-%202026-08-06%20at%2001.45.22.png" alt="Mobile Screen 3" width="24%" />
+  <img src="demos/mobile/Simulator%20Screenshot%20-%20iPhone%2017%20-%202026-08-06%20at%2001.45.56.png" alt="Mobile Screen 4" width="24%" />
+</p>
+
 ---
 
 # System Architecture
