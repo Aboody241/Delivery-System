@@ -4,6 +4,12 @@ A production-like delivery platform built to simulate a real-world software proj
 
 This project is designed to understand how modern software systems are built and how backend, dashboard, and mobile applications work together in a professional development environment.
 
+## Demo
+
+<video src="vid/delivery%20system.mp4" width="100%" controls></video>
+
+[Download / View Video File](vid/delivery%20system.mp4)
+
 ---
 
 # Project Goal
