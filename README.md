@@ -6,9 +6,9 @@ This project is designed to understand how modern software systems are built and
 
 ## Demo
 
-<video src="vid/demo%20bobo.mp4" width="100%" controls></video>
+<video src="https://github.com/Aboody241/Delivery-System/raw/main/vid/demo%20bobo.mp4" width="100%" controls></video>
 
-[Download / View Video File](vid/demo%20bobo.mp4)
+[Download / View Video File](https://github.com/Aboody241/Delivery-System/raw/main/vid/demo%20bobo.mp4)
 
 ---
 
