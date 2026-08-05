@@ -101,6 +101,16 @@ Responsible for:
 
 The dashboard communicates only with the Laravel API.
 
+### Screenshots
+
+<p align="center">
+  <img src="demos/dashboard/image.png" alt="Dashboard View 1" width="48%" />
+  <img src="demos/dashboard/image%20copy%202.png" alt="Dashboard View 2" width="48%" />
+</p>
+<p align="center">
+  <img src="demos/dashboard/image%20copy.png" alt="Dashboard View 3" width="97%" />
+</p>
+
 ---
 
 ## Mobile (Flutter)
